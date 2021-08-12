@@ -2,6 +2,23 @@ version: '3.5'
 
 services:
 
+  api:
+    container_name: nestjs_api_dev
+    image: nestjs-api-dev:1.0.0
+    build:
+        context: ./api/
+        target: development
+        dockerfile: ./api/Dockerfile
+    command: npm run start:debug
+    ports:
+        - 8085:3000
+    networks:
+        - postgres
+    volumes:
+        - ./api/:/usr/src/app
+        - /usr/src/app/node_modules
+    restart: unless-stopped
+
   grafana:
     image: grafana/grafana:7.3.6
     ports:
