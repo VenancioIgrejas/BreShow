@@ -1,7 +1,7 @@
 version: '3.5'
 
 services:
-
+  
   api:
     container_name: nestjs_api_dev
     image: nestjs-api-dev:1.0.0
@@ -18,7 +18,24 @@ services:
         - ./api/:/usr/src/app
         - /usr/src/app/node_modules
     restart: unless-stopped
-
+  
+  client:
+    container_name: react_client_dev
+    image: react-client-dev:1.0.0
+    build:
+        context: .
+        target: development
+        dockerfile: ./client/Dockerfile
+    command: yarn start
+    ports:
+        - 8086:3000
+    networks:
+        - postgres
+    volumes:
+        - ./client/:/app/client
+        - /app/client/node_modules
+    restart: unless-stopped
+  
   grafana:
     image: grafana/grafana:7.3.6
     ports:
@@ -27,7 +44,7 @@ services:
       - postgres
 
   postgres:
-    container_name: postgres_containerteste
+    container_name: postgres_containerbreshow
     image: postgres
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
@@ -42,7 +59,7 @@ services:
     restart: unless-stopped
   
   pgadmin:
-    container_name: pgadmin_containerteste
+    container_name: pgadmin_containerbreshow
     image: dpage/pgadmin4
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
