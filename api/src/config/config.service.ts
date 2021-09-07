@@ -23,7 +23,11 @@ class ConfigService {
     public getPort() {
       return this.getValue('PORT', true);
     }
-  
+    
+    public getSecret(){
+      return this.getValue('SECRET',true);
+    }
+
     public isProduction() {
       const mode = this.getValue('MODE', false);
       return mode != 'DEV';
@@ -57,11 +61,7 @@ class ConfigService {
   
   const configService = new ConfigService(process.env)
     .ensureValues([
-      'POSTGRES_HOST',
-      'POSTGRES_PORT',
-      'POSTGRES_USER',
-      'POSTGRES_PASSWORD',
-      'POSTGRES_DATABASE'
+      'SECRET'
     ]);
   
   export { configService };

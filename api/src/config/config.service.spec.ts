@@ -10,7 +10,7 @@ describe('ConfigService', () => {
 
   });
 
-  it('should be defined', () => {
-    expect(true).toBeDefined();
+  it('SECRET is working', () => {
+    expect(configService.getSecret()).toMatch("ValorDOSeuSecret");
   });
 });
