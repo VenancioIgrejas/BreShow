@@ -25,4 +25,8 @@ export abstract class BaseEntity {
 
     @Column({ type: 'varchar', length: 300, nullable: true })
     internalComment: string | null;
+
+    constructor(partial: Partial<BaseEntity>) {
+        Object.assign(this, partial);
+      }
 }

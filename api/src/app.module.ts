@@ -6,7 +6,7 @@ import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 
 @Module({
-  imports: [
+  imports: [TypeOrmModule.forRoot(),
             AuthModule,
             UserModule,
             ],

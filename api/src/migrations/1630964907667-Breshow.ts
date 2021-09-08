@@ -60,7 +60,8 @@ export class Breshow1630964907667 implements MigrationInterface {
                 name: "username",
                 type: "varchar",
                 length: "50",
-                isNullable: false
+                isNullable: false,
+                isUnique: true,
             },{
                 name: "password",
                 type: "varchar",

@@ -10,6 +10,7 @@
     "subscribers": ["dist/subscribers/**/*{.js,.ts}"],
     "migrations": ["dist/migrations/*{.ts,.js}"],
     "migrationsTableName": "migrations_typeorm",
-    "migrationsRun": true
+    "migrationsRun": true,
+    "autoLoadEntities": true
   }
   

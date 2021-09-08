@@ -6,6 +6,7 @@ import { JwtModule } from '@nestjs/jwt';
 
 import { configService } from '../config/config.service';
 import { JwtStrategy } from './jwt.strategy';
+import { BcryptService } from './bcrypt/bcrypt.service';
 
 
 @Module({
@@ -14,7 +15,7 @@ import { JwtStrategy } from './jwt.strategy';
               secret: configService.getSecret(),
               signOptions: { expiresIn: '60s' },
             })],
-  providers: [AuthService,JwtStrategy],
+  providers: [AuthService,JwtStrategy, BcryptService],
   controllers: [AuthController]
 })
 export class AuthModule {}

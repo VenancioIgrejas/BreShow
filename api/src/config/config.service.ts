@@ -28,6 +28,10 @@ class ConfigService {
       return this.getValue('SECRET',true);
     }
 
+    public getPasswordToCrypt(){
+      return this.getValue('PASSWORDTOCRYPT',true);
+    }
+
     public isProduction() {
       const mode = this.getValue('MODE', false);
       return mode != 'DEV';
@@ -61,7 +65,8 @@ class ConfigService {
   
   const configService = new ConfigService(process.env)
     .ensureValues([
-      'SECRET'
+      'SECRET',
+      'PASSWORDTOCRYPT'
     ]);
   
   export { configService };

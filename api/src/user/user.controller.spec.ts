@@ -1,27 +1,37 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { BcryptService } from '../auth/bcrypt/bcrypt.service';
+import { AuthModule } from '../auth/auth.module';
+import { configDatabaseTestService } from '../config/config-database-test.service';
+import { User } from './entities/user.entity';
 import { UserController } from './user.controller';
 import { UserService } from './user.service';
 
 describe('UserController', () => {
   let userController: UserController;
   let userService: UserService;
+  let moduleRef: TestingModule;
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
+    moduleRef = await Test.createTestingModule({
+      imports:[
+        TypeOrmModule.forRoot(configDatabaseTestService.getForRootConfig()),
+        TypeOrmModule.forFeature([User]),
+        ],
       controllers: [UserController],
-      providers: [UserService],
+      providers: [UserService,BcryptService],
     }).compile();
 
-    userController = module.get<UserController>(UserController);
-    userService = module.get<UserService>(UserService);
+    userController = moduleRef.get<UserController>(UserController);
+    userService = moduleRef.get<UserService>(UserService);
   });
 
-  describe('findAll', () => {
-    it('should return an array of cats', async () => {
-      const result = `This action returns all user`;
-      jest.spyOn(userService, 'findAll').mockImplementation(() => result);
+  afterEach(async () => {
+    // Free DB connection for next test
+    await moduleRef.close();
+  });
 
-      expect(await userController.findAll()).toBe(result);
-    });
+  it('should be defined', () => {
+    expect(userController).toBeDefined();
   });
 });
