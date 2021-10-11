@@ -1,0 +1,8 @@
+{
+    "realm": "breshowAD",
+    "auth-server-url": "http://localhost:28080/auth/",
+    "ssl-required": "external",
+    "resource": "react-breshow",
+    "public-client": true,
+    "confidential-port": 0
+  }
