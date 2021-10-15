@@ -1,8 +1,9 @@
 <mat-drawer-container class="main">
-  <mat-drawer mode="side" opened>
-    <app-navbar></app-navbar>
+  <mat-drawer class="sdbox" mode="side" opened>
+    <app-sidebar></app-sidebar>
   </mat-drawer>
   <mat-drawer-content>
+    <app-navbar></app-navbar>
     <router-outlet></router-outlet>
     <app-footer></app-footer>
   </mat-drawer-content>
