@@ -9,6 +9,11 @@ export function initializeKeycloak(
           url: "http://localhost:28080/auth/",
           realm: 'breshowAD',
           clientId: 'react-breshow',
-        }
+        },
+        initOptions: {
+          onLoad: 'check-sso',
+          silentCheckSsoRedirectUri:
+            window.location.origin + '/assets/silent-check-sso.html',
+        },
       });
 }
