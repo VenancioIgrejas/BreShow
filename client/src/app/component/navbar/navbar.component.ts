@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from 'src/app/module/interface/router.interface';
+import { routes } from 'src/app/routers.component';
 
 
 @Component({
@@ -13,10 +14,11 @@ export class NavbarComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.routers = [
-      {Id: '/home', Description: 'Home'},
-      {Id: '/teste', Description: 'Teste'}
-    ]
+
+    this.routers = routes.filter(x => x.path != '').map(x => <Router>{
+      Id: `/${x.path}`,
+      Description: (x.path || '')[0] + (x.path || '').substring(1)
+    })
   }
 
 }

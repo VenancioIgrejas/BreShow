@@ -4,13 +4,17 @@
         BreShow
     </a>
 
-    <div class="col">
-        opa
+    <div class="col itens-nav">
+        <div *ngFor="let router of routers; index as i;">
+            <div style="padding-left: 10px;">
+                <button mat-button class="button-nav" routerLink={{router.Id}}>{{ router.Description}}</button>
+            </div>
+        </div>
     </div>
 
     <div class="navbar-nav px-3">
         <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-            <mat-icon>person</mat-icon>
+            <mat-icon style="color: white;">person</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
         <button mat-menu-item>

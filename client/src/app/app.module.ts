@@ -17,6 +17,7 @@ import { initializeKeycloak } from './init/keycloak-init.factory';
 import { TesteModule } from './core/teste/teste.module';
 import { HomeModule } from './core/home/home.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ProviderModule } from './core/provider/provider.module';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     KeycloakAngularModule,
     TesteModule,
     HomeModule,
+    ProviderModule,
     BrowserAnimationsModule,
     MatSidenavModule,
     MatButtonModule,
