@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="101.899 94.985 259.621 171.949" width="259.621" height="171.949" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+  <g transform="matrix(1, 0, 0, 1, -44.118622, 35.63427)">
+    <rect style="fill: rgb(80, 28, 158); stroke-linejoin: round; stroke-width: 0px; stroke: rgb(186, 218, 85);" x="146.018" y="59.351" width="259.621" height="171.949" rx="45" ry="45"/>
+    <text style="fill: rgb(128, 0, 183); font-family: Arial, sans-serif; font-size: 15.7px; white-space: pre;" transform="matrix(21.592285, 0, 0, 9.125056, -3142.897461, -491.817688)" x="152.638" y="74.698">B</text>
+    <path style="fill: rgb(116, 109, 109);" transform="matrix(0.71107, 0.019132, -0.006541, 0.243097, -142.018066, -43.270409)" d="M 469.725 540.91 A 126.18 126.18 0 1 1 469.725 667.09 A 92.332 92.332 0 1 0 469.725 540.91 Z" bx:shape="crescent 579 604 126.18 300 0.7 1@9c18e062"/>
+    <path style="fill: rgb(116, 109, 109);" transform="matrix(-0.549719, -0.014791, -0.006339, 0.235584, 559.160522, 25.549784)" d="M 469.725 540.91 A 126.18 126.18 0 1 1 469.725 667.09 A 92.332 92.332 0 1 0 469.725 540.91 Z" bx:shape="crescent 579 604 126.18 300 0.7 1@9c18e062"/>
+  </g>
+</svg>

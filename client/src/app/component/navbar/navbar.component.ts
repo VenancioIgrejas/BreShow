@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from 'src/app/module/interface/router.interface';
+
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
+  public routers = [] as Router[];
   constructor() { }
 
   ngOnInit(): void {
+    this.routers = [
+      {Id: '/home', Description: 'Home'},
+      {Id: '/teste', Description: 'Teste'}
+    ]
   }
 
 }

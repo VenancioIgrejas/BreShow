@@ -1,10 +1,6 @@
-<nav class="main-sidebar">
-    <ul>
-        <li>
-            <a routerLink='/home'>Home</a>
-        </li>
-        <li>
-            <a routerLink='/teste'>Teste</a>
-        </li>
-    </ul>
+<nav class="col-md-2 d-none d-md-block bg-white sidebar">
+    <div *ngFor="let router of routers; index as i; first as isFirst">
+        <span routerLink='router.Id'>{{ router.Description}}</span>
+    </div>
 </nav>
+    
