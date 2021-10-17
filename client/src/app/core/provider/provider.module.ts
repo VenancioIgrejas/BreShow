@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProviderPageComponent } from './provider-page/provider-page.component';
+import {CardModule} from 'primeng/card';
+
 
 
 
@@ -9,7 +11,8 @@ import { ProviderPageComponent } from './provider-page/provider-page.component';
     ProviderPageComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    CardModule
   ]
 })
 export class ProviderModule { }

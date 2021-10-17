@@ -1,5 +1,12 @@
 <app-navbar></app-navbar>
-<div class="container-fluid main-container">
+<div class="p-grid">
+  <div class="p-col-2">2</div>
+  <div class="p-col main-container">
+    <router-outlet></router-outlet>
+  </div>
+  <div class="p-col-2">4</div>
+</div>
+<!-- <div class="container-fluid main-container">
   <div class="row pad-container">
     <div class="col-2"></div>
     <div class="col justify-content-md-center" style="background-color: cadetblue;">
@@ -7,7 +14,7 @@
     </div>
     <div class="col-2"></div>
   </div>
-</div>
+</div> -->
 <app-footer></app-footer>
 <!-- <div class="container-fluid d-flex flex-row vh-100" style="background-color: lightgray;padding: 0;">
   <div class="col-sm" class="sdbox">

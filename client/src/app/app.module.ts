@@ -18,6 +18,9 @@ import { TesteModule } from './core/teste/teste.module';
 import { HomeModule } from './core/home/home.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProviderModule } from './core/provider/provider.module';
+import {MenubarModule} from 'primeng/menubar';
+import {MenuModule} from 'primeng/menu'
+import {ButtonModule} from 'primeng/button';
 
 @NgModule({
   declarations: [
@@ -38,6 +41,9 @@ import { ProviderModule } from './core/provider/provider.module';
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
+    MenubarModule,
+    MenuModule,
+    ButtonModule
   ],
   providers: [
     {

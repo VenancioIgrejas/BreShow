@@ -35,8 +35,11 @@
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
-              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/styles.sass"
+              "src/styles.sass",
+              "./node_modules/primeflex/primeflex.css",
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/primeng/resources/themes/saga-blue/theme.css",
+              "node_modules/primeng/resources/primeng.min.css"
             ],
             "scripts": []
           },
