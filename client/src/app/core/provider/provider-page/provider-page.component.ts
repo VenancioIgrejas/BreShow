@@ -34,10 +34,14 @@ export class ProviderPageComponent implements OnInit, OnDestroy {
     // this.subscribes.add(subscriptionInitProvider);
     this.entities = [{
       id: '1',
-      name: 'josemar'
+      name: 'josemar',
+      cel: '(21) 96175-2535',
+      info: 'teste josemar',
+      perPrice: 0.4,
     }, {
       id: '2',
-      name: 'lindamar'
+      name: 'lindamar',
+      perPrice: 0.4,
     }]
 
   }
