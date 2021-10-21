@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TestePageComponent } from './teste-page/teste-page.component';
+import {CardModule} from 'primeng/card';
+
 
 
 
@@ -9,7 +11,8 @@ import { TestePageComponent } from './teste-page/teste-page.component';
     TestePageComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    CardModule
   ]
 })
 export class TesteModule { }

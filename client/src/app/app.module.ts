@@ -4,8 +4,10 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
+import { HttpClientModule } from '@angular/common/http';
 
-
+//Service
+import {ProviderService} from './service/provider.service'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -32,6 +34,7 @@ import {ButtonModule} from 'primeng/button';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     KeycloakAngularModule,
     TesteModule,
     HomeModule,
@@ -51,7 +54,9 @@ import {ButtonModule} from 'primeng/button';
     useFactory: initializeKeycloak,
     multi: true,
     deps: [KeycloakService],
-  }],
+    },
+    ProviderService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
