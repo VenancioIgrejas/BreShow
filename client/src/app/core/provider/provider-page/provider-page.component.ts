@@ -15,6 +15,11 @@ export class ProviderPageComponent implements OnInit, OnDestroy {
   public entity = {} as Provider;
   public entities = [] as Provider[];
   public selectedEntities = [] as Provider[];
+  public formComponent = {
+    visible: false,
+    title: '',
+    new: true
+  } as any;
 
   public subscribes = new Subscription;
   public entityDialog = false as boolean;
@@ -33,22 +38,31 @@ export class ProviderPageComponent implements OnInit, OnDestroy {
 
     // this.subscribes.add(subscriptionInitProvider);
     this.entities = [{
-      id: '1',
+      id: 1,
       name: 'josemar',
       cel: '(21) 96175-2535',
       info: 'teste josemar',
       perPrice: 0.4,
-    }, {
-      id: '2',
+    },{
+      id: 2,
       name: 'lindamar',
       perPrice: 0.4,
+    },{
+      id: 3,
+      name: 'Jorgin',
+      perPrice: 0.6,
     }]
 
   }
 
   openNew() {
-    this.entity = {};
+    this.entity = {id: 0};
     this.submitted = false;
+    this.formComponent = {
+      visible: true,
+      title: 'Adicionar Fornecedor',
+      new: true
+    };
     this.entityDialog = true;
   }
 
@@ -67,6 +81,12 @@ export class ProviderPageComponent implements OnInit, OnDestroy {
 
   editEntity(entityModel: Provider) {
     this.entity = { ...entityModel };
+    this.entity.perPrice = (this.entity.perPrice || 0) * 100;
+    this.formComponent = {
+      visible: true,
+      title: 'Editar Fornecedor',
+      new: false
+    };
     this.entityDialog = true;
   }
 
