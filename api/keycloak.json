@@ -1,0 +1,6 @@
+{
+  "baseUrl": "http://localhost:28080/auth",
+  "realmName": "breshowAD",
+  "clientSecret": "b0afa67b-a1e5-4f4f-b3ea-3cbbe12a52b5",
+  "clientId": "nestjs"
+}

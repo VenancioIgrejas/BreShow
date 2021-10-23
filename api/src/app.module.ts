@@ -1,16 +1,21 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import {TypeOrmModule} from '@nestjs/typeorm';
-import { UserModule } from './user/user.module';
-import { AuthModule } from './auth/auth.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import KeycloakModule, { AuthGuard } from '../node_modules/nestjs-keycloak-admin'
+import { APP_GUARD } from '@nestjs/core';
+
+import { ProviderModule } from './provider/provider.module';
 
 @Module({
   imports: [TypeOrmModule.forRoot(),
-            AuthModule,
-            UserModule,
-            ],
+    KeycloakModule.registerAsync({
+      useFactory: () => {
+        return require('../keycloak.json');
+      }}),
+    ProviderModule
+    ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, {provide: APP_GUARD, useClass:AuthGuard}],
 })
-export class AppModule {}
+export class AppModule { }

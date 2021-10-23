@@ -1,17 +1,18 @@
 import { CreateBaseDto } from "../../base/dto/create-base.dto";
 import { IsEmail, IsNotEmpty, Length } from 'class-validator';
 
-
-export class CreateUserDto extends CreateBaseDto{
+export class CreateProviderDto extends CreateBaseDto{
     
     @IsNotEmpty()
     @Length(10)
-    username: string;
+    name: string;
     
     @IsNotEmpty()
-    password: string;
+    perPrice: number;
     
-    @IsNotEmpty()
-    @IsEmail()
-    email: string;
+    @Length(30)
+    cel: string;
+
+    @Length(100)
+    info: string;
 }
