@@ -23,6 +23,7 @@ import { ProviderModule } from './core/provider/provider.module';
 import {MenubarModule} from 'primeng/menubar';
 import {MenuModule} from 'primeng/menu'
 import {ButtonModule} from 'primeng/button';
+import { BaseService } from './service/base.service';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import {ButtonModule} from 'primeng/button';
     multi: true,
     deps: [KeycloakService],
     },
+    BaseService,
     ProviderService
   ],
   bootstrap: [AppComponent]
