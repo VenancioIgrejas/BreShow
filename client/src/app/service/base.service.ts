@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { KeycloakService } from 'keycloak-angular';
 import { from } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { map, switchMap, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
 
@@ -17,8 +17,8 @@ export class BaseService {
 
   getHeaderWithToken() {
     return from(this.keycloakbaseService.getToken()).pipe(
-      map(auth_token => new Headers({
-        'Content-Type': 'application/json',
+      map(auth_token => new HttpHeaders({
+        'Content-Type': 'application/json; charset=utf-8',
         'Authorization': `Bearer ${auth_token}`
       })
     ))
@@ -26,7 +26,7 @@ export class BaseService {
 
   get<T>(urlService: string){
     return this.getHeaderWithToken().pipe(
-      switchMap(header => this.httpBase.get<T>(this.baseHttp + '/' + urlService,{ headers: (header as any) }))
+      switchMap(header => this.httpBase.get<T>(this.baseHttp + urlService,{ headers: header }))
     );
   }
 }

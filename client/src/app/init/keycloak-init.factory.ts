@@ -7,8 +7,8 @@ export function initializeKeycloak(
       keycloak.init({
         config: {
           url: "http://localhost:28080/auth/",
-          realm: 'breshowAD',
-          clientId: 'react-breshow',
+          realm: 'BreshowAD',
+          clientId: 'angular-front',
         },
         initOptions: {
           onLoad: 'check-sso',

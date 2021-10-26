@@ -6,6 +6,7 @@ COPY ./api/ .
 
 RUN npm install glob rimraf
 RUN npm i -g @nestjs/cli
+RUN npm i nestjs-keycloak-admin
 RUN npm i 
 
 

@@ -32,9 +32,9 @@ export class ProviderPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    let subscriptionInitProvider = this.providerService.getHeaderWithToken().subscribe((data) => {
-      console.log(data.get('Authorization'))
-    });
+    let subscriptionInitProvider = this.providerService.getProvider().subscribe((data) => {
+      console.log(data)
+    },error => console.log(error));
 
     this.subscribes.add(subscriptionInitProvider);
     this.entities = [{
