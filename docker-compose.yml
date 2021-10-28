@@ -20,20 +20,19 @@ services:
     restart: unless-stopped
   
   client:
-    container_name: react_client_dev
-    image: react-client-dev:1.0.0
+    container_name: angular_client_dev
+    image: angular_client_dev:1.0.0
     build:
         context: .
         target: development
         dockerfile: ./client/Dockerfile
-    command: yarn start
     ports:
         - 8086:3000
     networks:
         - postgres
     volumes:
-        - ./client/:/app/client
-        - /app/client/node_modules
+        - './client/:/app/client'
+        - '/app/client/node_modules'
     restart: unless-stopped
   
   grafana:
@@ -45,18 +44,20 @@ services:
 
   postgres:
     container_name: postgres_containerbreshow
-    image: postgres
+    image: postgres-dev:1.0.0
+    build:
+      context: .
+      target: development
+      dockerfile: ./data/Dockerfile
     environment:
-      POSTGRES_USER: ${POSTGRES_USER:-postgres}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
-      PGDATA: /data/postgres
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
-       - postgres:/data/postgres
+       - ./data/postgres-data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
     networks:
       - postgres
-    restart: unless-stopped
   
   pgadmin:
     container_name: pgadmin_containerbreshow
@@ -76,19 +77,20 @@ services:
 
   keycloak:
     container_name: keycloak_containerbreshow
-    image: quay.io/keycloak/keycloak:latest
+    image: jboss/keycloak
     environment:
-      DB_VENDOR: POSTGRES
+      DB_VENDOR: postgres
       DB_ADDR: postgres
-      DB_DATABASE: keycloak
-      DB_USER: postgres
-      DB_SCHEMA: public
-      DB_PASSWORD: changeme
-      # KEYCLOAK_USER: admin
-      # KEYCLOAK_PASSWORD: k3ycl04k
+      DB_DATABASE: ${POSTGRESQL_DB}
+      DB_USER: ${POSTGRES_USER}
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
+      DB_PORT: 5432
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: password
       JDBC_PARAMS: "ssl=false"
+      # PROXY_ADDRESS_FORWARDING: "true"
     ports:
-      - 8080:8080
+      - "28080:8080"
     networks:
       - postgres
     depends_on:

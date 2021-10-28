@@ -1,0 +1,47 @@
+<p-toast></p-toast>
+<p-dialog [(visible)]="propComponent.visible" [style]="{width: '450px'}" header="{{propComponent.title}}" [modal]="true" styleClass="p-fluid"
+    [formGroup]="form">
+    <ng-template pTemplate="content">
+        <div class="p-d-flex p-flex-column">
+            <div class="p-mb-2">
+                <span class="p-input-icon-right">
+                    <label for="username2">Nome: </label>
+                    <!-- <i class="pi pi-spin pi-spinner"></i> -->
+                    
+                    <input id="username2" type="username"
+                           formControlName = 'name'
+                           pInputText
+                           aria-describedby="username-help"
+                           [(ngModel)]="entity.name"/>
+
+                    <small *ngIf="validatorRequired('name')" id="username2-help" class="p-error">Campo Obrigatório.</small>
+                </span>
+            </div>
+            <div class="p-mb-2">
+                <label for="percent">Porcentagem da venda: </label>
+                <p-inputNumber formControlName='perprice' inputId="percent" 
+                               suffix="%" [min]="0" [max]="100" 
+                               [(ngModel)]="entity.perPrice">
+                </p-inputNumber>
+                <small *ngIf="validatorRequired('perprice')" id="percent" class="p-error">Campo Obrigatório.</small>
+            </div>
+            <div class="p-mb-2">
+                <label for="celLabel">Telefone: </label>
+                <p-inputMask id="celLabel" mask="(99) 9 9999-9999"
+                             formControlName="cel"
+                             [(ngModel)]="entity.cel"
+                             ></p-inputMask>
+            </div>
+            <div>
+                <label for="info">Informações: </label>
+                <textarea pInputTextarea formControlName='info' id="info"
+                          [(ngModel)]="entity.info"></textarea>
+            </div>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <i *ngIf="isRequiredServer" class="pi pi-spin pi-spinner p-mr-2" style="font-size: 2rem;"></i>
+        <!-- <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button> -->
+        <button pButton pRipple label="Salvar" icon="pi pi-check" class="p-button-rounded p-button-secondary" (click)="onFormSave()"></button>
+    </ng-template>
+</p-dialog>

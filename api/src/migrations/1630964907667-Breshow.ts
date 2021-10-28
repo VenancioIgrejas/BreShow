@@ -74,10 +74,38 @@ export class Breshow1630964907667 implements MigrationInterface {
                 isNullable: true
             }]
         }),true);
+
+        await queryRunner.createTable(new Table({
+            name: "provider",
+            columns: [...baseColumns,
+            {
+                name: "name",
+                type: "varchar",
+                length: "50",
+                isNullable: false,
+                isUnique: false,
+            },{
+                name: "cel",
+                type: "varchar",
+                length: "30",
+                isNullable: true
+            },{
+                name: "perPrice",
+                type: "number",
+                isNullable: false
+            },{
+                name: "info",
+                type: "varchar",
+                length: "100",
+                isNullable: true
+            }]
+        }),true);
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`DROP TABLE "user"`);
+        await queryRunner.query(`DROP TABLE "provider"`);
+
     }
 
 }

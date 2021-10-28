@@ -1,9 +1,6 @@
-FROM node:alpine AS development
-
+FROM node:12.7-alpine AS build
 WORKDIR /app/client
-
-COPY ./client/ .
-
-RUN yarn install
-
-CMD ["yarn", "start"]
+COPY ./client/package.json ./client/package-lock.json ./
+RUN npm install
+COPY ./client .
+RUN npm run start
