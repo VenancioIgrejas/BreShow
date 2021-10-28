@@ -44,14 +44,16 @@ services:
 
   postgres:
     container_name: postgres_containerbreshow
-    image: postgres
+    image: postgres-dev:1.0.0
+    build:
+      context: .
+      target: development
+      dockerfile: ./data/Dockerfile
     environment:
-      POSTGRES_DB: ${POSTGRESQL_DB}
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      # PGDATA: ./data/postgres
     volumes:
-       - postgres:/data/postgres
+       - ./data/postgres-data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
     networks:
