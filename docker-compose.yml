@@ -20,8 +20,8 @@ services:
     restart: unless-stopped
   
   client:
-    container_name: react_client_dev
-    image: react-client-dev:1.0.0
+    container_name: angular_client_dev
+    image: angular_client_dev:1.0.0
     build:
         context: .
         target: development
