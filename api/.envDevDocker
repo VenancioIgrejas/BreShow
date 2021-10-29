@@ -1,0 +1,10 @@
+KEYCLOAK_LOGIN_URI=http://keycloak:8080/auth/realms/auth-code-flow/protocol/openid-connect/auth
+KEYCLOAK_AUTH_URI=http://keycloak:8080/auth
+KEYCLOAK_TOKEN_URI=http://keycloak:8080/auth/realms/auth-code-flow/protocol/openid-connect/token
+KEYCLOAK_LOGOUT_URI=http://keycloak:8080/auth/realms/auth-code-flow/protocol/openid-connect/logout
+KEYCLOAK_REALM=breshowAD
+KEYCLOAK_CLIENT_ID=api
+KEYCLOAK_CLIENT_SECRET=9d735313-4949-47a7-96e4-9e17b133fed8
+KEYCLOAK_REDIRECT_URI=http://localhost:4200/
+KEYCLOAK_SCOPE=profile
+KEYCLOAK_RESPONSE_TYPE=code

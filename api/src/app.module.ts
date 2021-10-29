@@ -32,6 +32,8 @@ const keyCloakOptionsProvider =  {
     AuthKeycloakModule,
     HttpModule,
     ConfigModule.forRoot({
+      // envFilePath: '.envDevDocker',
+      envFilePath: '.envDevLocal',
       isGlobal: true,
     })
     ],
