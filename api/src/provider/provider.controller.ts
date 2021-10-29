@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { ProviderService } from './provider.service';
 import { CreateProviderDto } from './dto/create-provider.dto';
 import { UpdateProviderDto } from './dto/update-provider.dto';
+import { Public } from 'nest-keycloak-connect';
 
 @Controller('provider')
 export class ProviderController {
@@ -13,6 +14,7 @@ export class ProviderController {
   }
 
   @Get()
+  @Public()
   findAll() {
     return this.providerService.findAll();
   }

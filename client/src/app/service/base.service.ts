@@ -26,6 +26,7 @@ export class BaseService {
 
   get<T>(urlService: string){
     return this.getHeaderWithToken().pipe(
+      tap(x => console.log(x.get('Authorization'))),
       switchMap(header => this.httpBase.get<T>(this.baseHttp + urlService,{ headers: header }))
     );
   }

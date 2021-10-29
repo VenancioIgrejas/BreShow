@@ -4,7 +4,7 @@
     "port": 5432,
     "username": "postgres",
     "password": "changeme",
-    "database": "Breshow",
+    "database": "breshow",
     "entities": ["dist/**/entities/*.entity{.ts,.js}"],
     "synchronize": true,
     "subscribers": ["dist/subscribers/**/*{.js,.ts}"],
