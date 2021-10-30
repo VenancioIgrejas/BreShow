@@ -14,7 +14,6 @@ export class ProviderController {
   }
 
   @Get()
-  @Public()
   findAll() {
     return this.providerService.findAll();
   }

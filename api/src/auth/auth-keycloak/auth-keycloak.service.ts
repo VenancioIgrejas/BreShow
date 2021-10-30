@@ -2,7 +2,7 @@ import {HttpException, Injectable } from '@nestjs/common';
 import {HttpService} from '@nestjs/axios';
 
 import { ConfigService } from '@nestjs/config';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 import { KeycloakToken } from './token-keycloak.model';
 import * as queryString from 'qs';
 
@@ -25,11 +25,12 @@ export class AuthKeycloakService {
         this.keycloakRedirectUri = _config.get('KEYCLOAK_REDIRECT_URI');
         this.keycloakClientId = _config.get('KEYCLOAK_CLIENT_ID'); 
         this.keycloakClientSecret = _config.get('KEYCLOAK_CLIENT_SECRET');
-        this.keycloakTokenUri = this._config.get('KEYCLOAK_TOKEN_URI');
-        this.keycloakLogoutUri = this._config.get('KEYCLOAK_LOGOUT_URI');
+        this.keycloakTokenUri = _config.get('KEYCLOAK_TOKEN_URI');
+        this.keycloakLogoutUri = _config.get('KEYCLOAK_LOGOUT_URI');
     }
 
     getUrlLogin() : any {
+
         return { url: `${this.keycloakLoginUri}`
         +`?client_id=${this.keycloakClientId}`
             +`&response_type=${this.keycloakResponseType}`
@@ -58,7 +59,7 @@ export class AuthKeycloakService {
                 res.data.expires_in,
                 res.data.refresh_expires_in
             )),
-            catchError( e => { throw new HttpException( e.response.data, e.response.status) })
+            catchError( e => { throw new HttpException( e, e) })
         );
     }
 

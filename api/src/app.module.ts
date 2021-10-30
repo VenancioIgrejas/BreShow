@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import {HttpModule} from '@nestjs/axios';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -30,10 +29,7 @@ const keyCloakOptionsProvider =  {
     KeycloakConnectModule.registerAsync(keyCloakOptionsProvider),
     ProviderModule,
     AuthKeycloakModule,
-    HttpModule,
     ConfigModule.forRoot({
-      // envFilePath: '.envDevDocker',
-      envFilePath: '.envDevLocal',
       isGlobal: true,
     })
     ],
