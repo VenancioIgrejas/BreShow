@@ -1,6 +1,13 @@
-FROM node:12.7-alpine AS build
+FROM node:14
+
+RUN npm install -g @angular/cli 
+
 WORKDIR /app/client
-COPY ./client/package.json ./client/package-lock.json ./
+
+COPY ./client/package.json .
+
 RUN npm install
+
 COPY ./client .
-RUN npm run start
+
+CMD ng serve --host 0.0.0.0
