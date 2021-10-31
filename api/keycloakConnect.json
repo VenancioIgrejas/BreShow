@@ -1,0 +1,8 @@
+{
+    "authServerUrl": "http://localhost:28080/auth",
+    "realm": "BreshowAD",
+    "clientId":"nestjs-back",
+    "secret": "e6e5dded-e912-4184-bbc7-f904c7d31636",
+    "bearerOnly": true,
+    "cookieKey": "KEYCLOAK_JWT"
+}

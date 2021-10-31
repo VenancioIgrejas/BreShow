@@ -1,6 +1,6 @@
 {
   "baseUrl": "http://keycloak:8080/auth",
   "realmName": "BreshowAD",
-  "clientSecret": "5b3c1880-443c-488f-b79e-de168e3b36c5",
+  "clientSecret": "7807cc85-c327-4625-aa8f-8cf1bdc4997e",
   "clientId": "nestjs-back"
 }
