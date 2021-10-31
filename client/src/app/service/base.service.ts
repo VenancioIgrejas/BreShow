@@ -16,12 +16,7 @@ export class BaseService {
   constructor(private httpBase: HttpClient, private keycloakbaseService: KeycloakService) { }
 
   getHeaderWithToken() {
-    return from(this.keycloakbaseService.getToken()).pipe(
-      map(auth_token => new HttpHeaders({
-        'Content-Type': 'application/json; charset=utf-8',
-        'Authorization': `Bearer ${auth_token}`
-      })
-    ))
+    return this.keycloakbaseService.addTokenToHeader();
   }
 
   get<T>(urlService: string){
