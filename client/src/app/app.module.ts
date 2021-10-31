@@ -24,6 +24,7 @@ import {MenubarModule} from 'primeng/menubar';
 import {MenuModule} from 'primeng/menu'
 import {ButtonModule} from 'primeng/button';
 import { BaseService } from './service/base.service';
+import { LoginService } from './service/login.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { BaseService } from './service/base.service';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    KeycloakAngularModule,
+    // KeycloakAngularModule,
     TesteModule,
     HomeModule,
     ProviderModule,
@@ -50,14 +51,15 @@ import { BaseService } from './service/base.service';
     ButtonModule
   ],
   providers: [
-    {
-    provide: APP_INITIALIZER,
-    useFactory: initializeKeycloak,
-    multi: true,
-    deps: [KeycloakService],
-    },
+    // {
+    // provide: APP_INITIALIZER,
+    // useFactory: initializeKeycloak,
+    // multi: true,
+    // deps: [KeycloakService],
+    // },
     BaseService,
-    ProviderService
+    ProviderService,
+    LoginService
   ],
   bootstrap: [AppComponent]
 })

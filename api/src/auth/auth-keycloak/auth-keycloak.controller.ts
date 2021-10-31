@@ -9,7 +9,7 @@ export class AuthKeycloakController {
     constructor(private _authService: AuthKeycloakService){}
 
     @Get('login')
-    @Redirect('', 301)
+    // @Redirect('', 301)
     @Public()
     login(){
        return this._authService.getUrlLogin();
