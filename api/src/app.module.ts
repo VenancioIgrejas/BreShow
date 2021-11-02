@@ -17,13 +17,9 @@ import { ProviderModule } from './provider/provider.module';
 
 @Module({
   imports: [TypeOrmModule.forRoot(),
-    // KeycloakModule.registerAsync({
-    //   useFactory: () => {
-    //     return require('../keycloak.json');
-    //   }}),
     KeycloakConnectModule.registerAsync({
       useFactory: () => {
-        return require('../keycloakConnect.json')
+        return require('../keycloak.json')
       }
     }),
     ProviderModule
