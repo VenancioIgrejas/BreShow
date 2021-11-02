@@ -17,7 +17,7 @@ export class ProviderService extends BaseService {
   }
 
   getProvider() {
-    return this.get<any>(this.httpService);
+    return this.get<Provider[]>(this.httpService);
   }
   
 }
