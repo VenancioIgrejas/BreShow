@@ -5,7 +5,8 @@ import { Header } from 'primeng/api';
 import { from } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-
+import jwt_decode from "jwt-decode";
+import { JwtToken } from '../module/interface/jwt-token.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,10 @@ export class BaseService {
 
   getHeaderWithToken() {
     return this.keycloakbaseService.addTokenToHeader();
+  }
+
+  getTokenDecode() {
+    return from(this.keycloakbaseService.getToken()).pipe(map(jwt => jwt_decode<JwtToken>(jwt)))
   }
 
   get<T>(urlService: string){
