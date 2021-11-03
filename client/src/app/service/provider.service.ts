@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Provider } from '../module/interface/provider.interface';
 import { KeycloakService } from 'keycloak-angular';
 import { BaseService } from './base.service';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -16,8 +17,16 @@ export class ProviderService extends BaseService {
     super(http,keycloakService);
   }
 
-  getProvider() {
-    return this.get<Provider[]>(this.httpService);
+  getAllProvider() {
+    return this.get<Provider[]>(this.httpService + '/all');
+  }
+
+  Save(entity: Provider): Observable<Provider> | null {
+    return this.post<Provider>(this.httpService, entity);
+  }
+
+  delete(id: string){
+    return super.delete(this.httpService,id);
   }
   
 }

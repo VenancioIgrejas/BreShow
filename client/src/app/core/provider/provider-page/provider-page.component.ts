@@ -32,31 +32,11 @@ export class ProviderPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    let subscriptionInitProvider = this.providerService.getProvider().subscribe((data) => {
-      console.log(data)
-    },error => console.log(error));
-
-    this.subscribes.add(subscriptionInitProvider);
-    this.entities = [{
-      id: 1,
-      name: 'josemar',
-      cel: '(21) 96175-2535',
-      info: 'teste josemar',
-      perPrice: 0.4,
-    },{
-      id: 2,
-      name: 'lindamar',
-      perPrice: 0.4,
-    },{
-      id: 3,
-      name: 'Jorgin',
-      perPrice: 0.6,
-    }]
-
+    this.updateTable();
   }
 
   openNew() {
-    this.entity = {id: 0};
+    this.entity = {};
     this.submitted = false;
     this.formComponent = {
       visible: true,
@@ -91,16 +71,34 @@ export class ProviderPageComponent implements OnInit, OnDestroy {
   }
 
   deleteEntity(entityModel: Provider) {
+    console.log(entityModel)
     this.confirmationService.confirm({
-        message: 'Are you sure you want to delete ' + entityModel.name + '?',
-        header: 'Confirm',
+        message: 'Gostaria de excluir o fornecedor ' + entityModel.name + '?',
+        header: 'Deletar',
         icon: 'pi pi-exclamation-triangle',
         accept: () => {
-            this.entities = this.entities.filter(val => val.id !== entityModel.id);
-            this.entity = {};
-            this.messageService.add({severity:'success', summary: 'Successful', detail: 'Provider Deleted', life: 3000});
+            let subdelete = this.providerService.delete(entityModel.id || "").subscribe(() =>{
+              this.messageService.add({severity:'success', detail: 'Fornecedor deletado com sucesso!', life: 3000});
+              this.updateTable();
+            },errors =>{
+              console.log(errors);
+              this.messageService.add({
+                severity:'error',
+                summary:`Error no servidor`, detail:errors.error.message
+              })
+            })
+            this.subscribes.add(subdelete);
         }
     });
-}
+  }
+
+  updateTable() {
+    let subscriptionInitProvider = this.providerService.getAllProvider().subscribe((data) => {
+      console.log(data);
+      this.entities = data;
+    },error => console.log(error));
+
+    this.subscribes.add(subscriptionInitProvider);
+  }
 
 }

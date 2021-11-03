@@ -51,12 +51,13 @@ export class BaseService {
     )
   }
 
-  delete(url: string){
-    if(this.keycloakbaseService.isTokenExpired()) return null;
-
+  delete(urlService: string, id: string){
     return this.getHeaderWithToken().pipe(
-      switchMap(header => this.httpBase.put(this.baseHttp + url, { headers: header }))
-    )
+      switchMap(header => this.httpBase.delete(this.baseHttp + urlService + '/delete',{ 
+        headers: header, 
+        params: new HttpParams().set('id', id)
+      }))
+    );
   }
 
 }

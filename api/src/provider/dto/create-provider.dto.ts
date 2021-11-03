@@ -4,15 +4,15 @@ import { IsEmail, IsNotEmpty, Length } from 'class-validator';
 export class CreateProviderDto extends CreateBaseDto{
     
     @IsNotEmpty()
-    @Length(10)
+    @Length(0,100)
     name: string;
     
     @IsNotEmpty()
     perPrice: number;
     
-    @Length(30)
+    @Length(0,30)
     cel: string;
 
-    @Length(100)
+    @Length(0,100)
     info: string;
 }

@@ -16,6 +16,7 @@ import {InputMaskModule} from 'primeng/inputmask';
 import {InputNumberModule} from 'primeng/inputnumber';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import {ToastModule} from 'primeng/toast';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import {ToastModule} from 'primeng/toast';
     InputMaskModule,
     InputNumberModule,
     InputTextareaModule,
-    ToastModule
+    ToastModule,
+    ConfirmDialogModule
   ],
   providers:[
     MessageService,

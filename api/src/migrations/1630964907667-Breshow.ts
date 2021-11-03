@@ -91,7 +91,7 @@ export class Breshow1630964907667 implements MigrationInterface {
                 isNullable: true
             },{
                 name: "perPrice",
-                type: "number",
+                type: "integer",
                 isNullable: false
             },{
                 name: "info",

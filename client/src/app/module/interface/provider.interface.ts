@@ -1,5 +1,5 @@
 export interface Provider {
-    id?:number
+    id?:string
     name?:string
     cel?: string
     info?: string

@@ -3,6 +3,7 @@ import { Provider } from 'src/app/module/interface/provider.interface';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { tap } from 'rxjs/operators';
 import { Message, MessageService } from 'primeng/api';
+import { ProviderService } from 'src/app/service/provider.service';
 
 @Component({
   selector: 'app-provider-form',
@@ -36,7 +37,7 @@ export class ProviderFormComponent implements OnInit {
     info: new FormControl('',[Validators.maxLength(100)])
   });
 
-  constructor(private messageService: MessageService) { }
+  constructor( private providerService: ProviderService,private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.mapNameControl
@@ -84,8 +85,23 @@ export class ProviderFormComponent implements OnInit {
     }
 
     this.isRequiredServer = true;
+    console.log(this.entity);
+    this.providerService.Save(this.entity)?.subscribe(res => {
 
+      this.messageService.add(<Message>{
+        severity:'sucess',
+         summary:`Entidade Salva com sucesso`
+      })
+      this.propComponent.visible = false;
+    },errors => {
+      console.log(errors);
+      this.messageService.add(<Message>{
+        severity:'error',
+         summary:`Problema ao Salvar`, detail:errors.error.message
+      })
+    },()=>{
+      this.isRequiredServer = false;
+    })
   }
-
 }
 

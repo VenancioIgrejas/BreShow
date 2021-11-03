@@ -1,3 +1,4 @@
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
 <p-card styleClass="p-shadow-panel">
     <p-toolbar styleClass="p-mb-4">
         <ng-template pTemplate="left">
@@ -43,7 +44,7 @@
                     <p-tableCheckbox [value]="entity"></p-tableCheckbox>
                 </td>
                 <td>{{entity.name}}</td>
-                <td>{{entity.perPrice * 100}}%</td>
+                <td>{{entity.perPrice}}%</td>
                 <td>{{entity.cel}}</td>
                 <td>{{entity.info}}</td>
 
