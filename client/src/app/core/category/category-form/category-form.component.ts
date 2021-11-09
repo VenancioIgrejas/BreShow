@@ -1,16 +1,16 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Provider } from 'src/app/module/interface/provider.interface';
+import { Category } from 'src/app/module/interface/category.interface';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { tap } from 'rxjs/operators';
 import { Message, MessageService } from 'primeng/api';
-import { ProviderService } from 'src/app/service/provider.service';
+import { CategoryService } from 'src/app/service/category.service';
 
 @Component({
-  selector: 'app-provider-form',
-  templateUrl: './provider-form.component.html',
-  styleUrls: ['./provider-form.component.sass']
+  selector: 'app-category-form',
+  templateUrl: './category-form.component.html',
+  styleUrls: ['./category-form.component.sass']
 })
-export class ProviderFormComponent implements OnInit {
+export class CategoryFormComponent implements OnInit {
 
   @Input()
   public propComponent = {
@@ -20,7 +20,7 @@ export class ProviderFormComponent implements OnInit {
   } as any;
 
   @Input()
-  public entity = {} as Provider;
+  public entity = {} as Category;
 
   @Output("updateTable") 
   public updateTable: EventEmitter<any> = new EventEmitter();
@@ -30,23 +30,14 @@ export class ProviderFormComponent implements OnInit {
 
   //forms
   public form = new FormGroup({
-    name: new FormControl('', [Validators.required]),
-    cel: new FormControl(''),
-    perprice: new FormControl(40, {
-      updateOn: 'blur',
-      validators: [Validators.required,Validators.min(0), Validators.max(100)],
-    }),
-    info: new FormControl('',[Validators.maxLength(100)])
+    name: new FormControl('', [Validators.required])
   });
 
-  constructor( private providerService: ProviderService,private messageService: MessageService) { }
+  constructor( private categoryService: CategoryService,private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.mapNameControl
-          .set('name','Nome')
-          .set('cel','Telefone')
-          .set('perprice','Porcentagem da venda')
-          .set('info','Informações');
+          .set('name','Nome');
   }
 
   validatorRequired(nameForm: string) {
@@ -98,7 +89,7 @@ export class ProviderFormComponent implements OnInit {
   }
 
   edit() {
-    this.providerService.edit(this.entity)?.subscribe(res => {
+    this.categoryService.edit(this.entity)?.subscribe(res => {
 
       this.messageService.add(<Message>{
         severity:'sucess',
@@ -118,7 +109,7 @@ export class ProviderFormComponent implements OnInit {
   }
 
   add(){
-    this.providerService.add(this.entity)?.subscribe(res => {
+    this.categoryService.add(this.entity)?.subscribe(res => {
 
       this.messageService.add(<Message>{
         severity:'sucess',
@@ -126,7 +117,6 @@ export class ProviderFormComponent implements OnInit {
       })
       this.propComponent.visible = false;
       this.updateTable.emit();
-      
     },errors => {
       console.log(errors);
       this.messageService.add(<Message>{

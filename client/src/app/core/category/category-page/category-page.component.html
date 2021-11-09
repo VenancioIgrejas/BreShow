@@ -16,10 +16,10 @@
 
     <p-table #dt [value]="entities" [rows]="10" [paginator]="true" [globalFilterFields]="['name','country.name','representative.name','status']" responsiveLayout="scroll"
         [(selection)]="selectedEntities" [rowHover]="true" dataKey="id"
-        currentPageReportTemplate="Mostrando de {first} a {last} fornecedores" [showCurrentPageReport]="true">
+        currentPageReportTemplate="Mostrando de {first} a {last} categorias" [showCurrentPageReport]="true">
         <ng-template pTemplate="caption">
             <div class="p-d-flex p-ai-center p-jc-between">
-                <h5 class="p-m-0">Tabela de Fornecedores</h5>
+                <h5 class="p-m-0">Tabela de categorias</h5>
                 <!-- <span class="p-input-icon-left">
                     <i class="pi pi-search"></i>
                     <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search..." /> 
@@ -32,9 +32,6 @@
                     <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                 </th>
                 <th pSortableColumn="name">Nome <p-sortIcon field="name"></p-sortIcon></th>
-                <th pSortableColumn="perPrice">% da venda <p-sortIcon field="perPrice"></p-sortIcon></th>
-                <th>Telefone</th>
-                <th>Informação</th>
                 <th></th>
             </tr>
         </ng-template>
@@ -44,9 +41,6 @@
                     <p-tableCheckbox [value]="entity"></p-tableCheckbox>
                 </td>
                 <td>{{entity.name}}</td>
-                <td>{{entity.perPrice}}%</td>
-                <td>{{entity.cel}}</td>
-                <td>{{entity.info}}</td>
 
                 <td style="text-align: right;">
                     <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editEntity(entity)"></button>
@@ -56,9 +50,9 @@
         </ng-template>
         <ng-template pTemplate="summary">
             <div class="p-d-flex p-ai-center p-jc-between">
-                Total de {{entities ? entities.length : 0 }} fornecedores.
+                Total de {{entities ? entities.length : 0 }} categorias.
             </div>
         </ng-template>
     </p-table>
 </p-card>
-<app-provider-form [propComponent]="formComponent" [entity]="entity" (updateTable)="updateTable()" ></app-provider-form>
+<app-category-form [propComponent]="formComponent" [entity]="entity" (updateTable)="updateTable()"></app-category-form>

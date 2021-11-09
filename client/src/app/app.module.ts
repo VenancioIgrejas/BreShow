@@ -24,6 +24,8 @@ import {MenubarModule} from 'primeng/menubar';
 import {MenuModule} from 'primeng/menu'
 import {ButtonModule} from 'primeng/button';
 import { BaseService } from './service/base.service';
+import { CategoryModule } from './core/category/category.module';
+import { CategoryService } from './service/category.service';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,7 @@ import { BaseService } from './service/base.service';
     TesteModule,
     HomeModule,
     ProviderModule,
+    CategoryModule,
     BrowserAnimationsModule,
     MatSidenavModule,
     MatButtonModule,
@@ -57,7 +60,8 @@ import { BaseService } from './service/base.service';
     deps: [KeycloakService],
     },
     BaseService,
-    ProviderService
+    ProviderService,
+    CategoryService
   ],
   bootstrap: [AppComponent]
 })
