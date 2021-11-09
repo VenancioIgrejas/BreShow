@@ -14,6 +14,7 @@ import {
 import { APP_GUARD } from '@nestjs/core';
 
 import { ProviderModule } from './provider/provider.module';
+import { CategoryModule } from './category/category.module';
 
 @Module({
   imports: [TypeOrmModule.forRoot(),
@@ -22,7 +23,8 @@ import { ProviderModule } from './provider/provider.module';
         return require('../keycloak.json')
       }
     }),
-    ProviderModule
+    ProviderModule,
+    CategoryModule
     ],
   controllers: [AppController],
   providers: [AppService, // These are in order, see https://docs.nestjs.com/guards#binding-guards

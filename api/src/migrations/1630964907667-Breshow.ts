@@ -85,6 +85,11 @@ export class Breshow1630964907667 implements MigrationInterface {
                 isNullable: false,
                 isUnique: false,
             },{
+                name: "idUser",
+                type: "varchar",
+                length: "30",
+                isNullable: false
+            },{
                 name: "cel",
                 type: "varchar",
                 length: "30",
@@ -100,11 +105,29 @@ export class Breshow1630964907667 implements MigrationInterface {
                 isNullable: true
             }]
         }),true);
+
+        await queryRunner.createTable(new Table({
+            name: "category",
+            columns: [...baseColumns,
+            {
+                name: "name",
+                type: "varchar",
+                length: "50",
+                isNullable: false,
+                isUnique: false,
+            },{
+                name: "idUser",
+                type: "varchar",
+                length: "30",
+                isNullable: false
+            }]
+        }),true);
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`DROP TABLE "user"`);
         await queryRunner.query(`DROP TABLE "provider"`);
+        await queryRunner.query(`DROP TABLE "category"`);
 
     }
 

@@ -13,18 +13,18 @@ export class ProviderController {
   }
 
   @Get('all')
-  findAll() {
-    return this.providerService.findAll();
+  findAll(@Query('idUser') idUser: string) {
+    return this.providerService.findAll(idUser);
   }
 
   @Get()
-  findOne(@Param('id') id: string) {
+  findOne(@Query('id') id: string) {
     return this.providerService.findOne(id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateProviderDto: UpdateProviderDto) {
-    return this.providerService.update(+id, updateProviderDto);
+  @Patch('edit')
+  update(@Query('id') id: string, @Body() updateProviderDto: UpdateProviderDto) {
+    return this.providerService.update(id, updateProviderDto);
   }
 
   @Delete('delete')

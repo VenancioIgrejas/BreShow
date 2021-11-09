@@ -86,7 +86,36 @@ export class ProviderFormComponent implements OnInit {
 
     this.isRequiredServer = true;
     console.log(this.entity);
-    this.providerService.Save(this.entity)?.subscribe(res => {
+    
+    if(this.propComponent.new){
+      this.add()
+    }else{
+      this.edit()
+    }
+
+  }
+
+  edit() {
+    this.providerService.edit(this.entity)?.subscribe(res => {
+
+      this.messageService.add(<Message>{
+        severity:'sucess',
+         summary:`Entidade Salva com sucesso`
+      })
+      this.propComponent.visible = false;
+    },errors => {
+      console.log(errors);
+      this.messageService.add(<Message>{
+        severity:'error',
+         summary:`Problema ao Salvar`, detail:errors.error.message
+      })
+    },()=>{
+      this.isRequiredServer = false;
+    })
+  }
+
+  add(){
+    this.providerService.add(this.entity)?.subscribe(res => {
 
       this.messageService.add(<Message>{
         severity:'sucess',

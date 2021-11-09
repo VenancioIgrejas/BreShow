@@ -61,7 +61,7 @@ export class ProviderPageComponent implements OnInit, OnDestroy {
 
   editEntity(entityModel: Provider) {
     this.entity = { ...entityModel };
-    this.entity.perPrice = (this.entity.perPrice || 0) * 100;
+    this.entity.perPrice = (this.entity.perPrice || 0);
     this.formComponent = {
       visible: true,
       title: 'Editar Fornecedor',

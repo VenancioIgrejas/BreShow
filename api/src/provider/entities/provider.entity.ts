@@ -6,6 +6,9 @@ import { Exclude } from 'class-transformer';
 @Entity({ name: 'provider' })
 export class Provider extends BaseEntity{
     
+    @Column({ type: 'varchar', length: 100 })
+    idUser: string;
+
     @Column({ type: 'varchar', length: 50 })
     name: string;
 

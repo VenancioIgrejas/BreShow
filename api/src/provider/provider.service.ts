@@ -17,6 +17,7 @@ export class ProviderService {
   async create(createProviderDto: CreateProviderDto) {
 
     const provider = new Provider(<Provider>{
+      idUser: createProviderDto.idUser,
       name: createProviderDto.name,
       cel: createProviderDto.cel,
       perPrice: createProviderDto.perPrice,
@@ -26,16 +27,22 @@ export class ProviderService {
     return await this.providerRepository.save(provider);
   }
 
-  findAll() {
-    return this.providerRepository.find();
+  findAll(idUser: string) {
+    return this.providerRepository.find({ where: { idUser: idUser} });
   }
 
   findOne(id: string) {
     return this.providerRepository.getId(<Provider>{id: id});
   }
 
-  update(id: number, updateProviderDto: UpdateProviderDto) {
-    return `This action updates a #${id} provider`;
+  update(id: string, updateProviderDto: UpdateProviderDto) {
+    return this.providerRepository.update(id,<Provider>{
+      name: updateProviderDto.name,
+      cel: updateProviderDto.cel,
+      perPrice: updateProviderDto.perPrice,
+      info: updateProviderDto.info
+    });
+    // return `This action updates a #${id} provider and ${updateProviderDto}`;
   }
 
   remove(id: string) {

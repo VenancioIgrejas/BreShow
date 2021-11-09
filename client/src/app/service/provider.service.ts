@@ -21,7 +21,11 @@ export class ProviderService extends BaseService {
     return this.get<Provider[]>(this.httpService + '/all');
   }
 
-  Save(entity: Provider): Observable<Provider> | null {
+  edit(entity: Provider) {
+    return this.put<Provider>(this.httpService, entity.id || "", entity);
+  }
+
+  add(entity: Provider): Observable<Provider> | null {
     return this.post<Provider>(this.httpService, entity);
   }
 

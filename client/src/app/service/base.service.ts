@@ -21,13 +21,20 @@ export class BaseService {
     return this.keycloakbaseService.addTokenToHeader();
   }
 
+  getIdUserAndHeader(){
+    return this.getHeaderWithToken().pipe(map(header => <any>{idUser: jwt_decode<JwtToken>(header.get("authorization") as string).sub, header: header}))
+  }
+
   getTokenDecode() {
     return from(this.keycloakbaseService.getToken()).pipe(map(jwt => jwt_decode<JwtToken>(jwt)))
   }
 
   get<T>(urlService: string){
-    return this.getHeaderWithToken().pipe(
-      switchMap(header => this.httpBase.get<T>(this.baseHttp + urlService,{ headers: header }))
+    return this.getIdUserAndHeader().pipe(
+      switchMap(obj => this.httpBase.get<T>(this.baseHttp + urlService,{ 
+        headers: obj.header,
+        params: new HttpParams().set('idUser', obj.idUser)
+      }))
     );
   }
 
@@ -43,16 +50,19 @@ export class BaseService {
   post<T>(urlService: string, entity: T){
     if(this.keycloakbaseService.isTokenExpired()) return null;
 
-    return this.getHeaderWithToken().pipe(
-      switchMap(header => this.httpBase.post(this.baseHttp + urlService + '/add', entity, { headers: header }))
+    return this.getIdUserAndHeader().pipe(
+      switchMap(obj => this.httpBase.post(this.baseHttp + urlService + '/add', {...entity, idUser: obj.idUser}, { headers: obj.header }))
     )
   }
 
-  put<T>(urlService: string ,entity: T){
+  put<T>(urlService: string ,id: string,entity: T){
     if(this.keycloakbaseService.isTokenExpired()) return null;
 
-    return this.getHeaderWithToken().pipe(
-      switchMap(header => this.httpBase.put(this.baseHttp + urlService + '/edit', entity, { headers: header }))
+    return this.getIdUserAndHeader().pipe(
+      switchMap(obj => this.httpBase.patch(this.baseHttp + urlService + '/edit', {...entity, idUser: obj.idUser}, { 
+        headers: obj.header,
+        params: new HttpParams().set('id', id)
+       }))
     )
   }
 
