@@ -15,6 +15,7 @@ import { APP_GUARD } from '@nestjs/core';
 
 import { ProviderModule } from './provider/provider.module';
 import { CategoryModule } from './category/category.module';
+import { ProductModule } from './product/product.module';
 
 @Module({
   imports: [TypeOrmModule.forRoot(),
@@ -24,7 +25,8 @@ import { CategoryModule } from './category/category.module';
       }
     }),
     ProviderModule,
-    CategoryModule
+    CategoryModule,
+    ProductModule
     ],
   controllers: [AppController],
   providers: [AppService, // These are in order, see https://docs.nestjs.com/guards#binding-guards

@@ -115,11 +115,11 @@ export class Breshow1630964907667 implements MigrationInterface {
                 length: "30",
                 isNullable: false
             },{
-                name: "category_id",
+                name: "categoryId",
                 type: "uuid",
                 isNullable: false
             },{
-                name: "provider_id",
+                name: "providerId",
                 type: "uuid",
                 isNullable: false
             },
@@ -136,7 +136,7 @@ export class Breshow1630964907667 implements MigrationInterface {
                 type: "integer",
                 isNullable: false
             },{
-                name: "date_in",
+                name: "dateIn",
                 type: 'timestamp',
                 default: 'now()',
                 isNullable: false
