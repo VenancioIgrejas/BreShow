@@ -1,4 +1,4 @@
-import {MigrationInterface, QueryRunner, Table} from "typeorm";
+import {MigrationInterface, QueryRunner, Table, TableForeignKey} from "typeorm";
 import { TableColumnOptions } from "typeorm/schema-builder/options/TableColumnOptions";
 import { TableOptions } from "typeorm/schema-builder/options/TableOptions";
 
@@ -52,29 +52,6 @@ export class Breshow1630964907667 implements MigrationInterface {
             isNullable: true
         }] as TableColumnOptions[];
 
-        // await queryRunner.query(`CREATE TABLE "user" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "isActive" boolean NOT NULL DEFAULT true, "isArchived" boolean NOT NULL DEFAULT false, "createDateTime" TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now(), "createdBy" character varying(300) NOT NULL, "lastChangedDateTime" TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now(), "lastChangedBy" character varying(300) NOT NULL, "internalComment" character varying(300), "name" character varying(300) NOT NULL, "username" character varying(300) NOT NULL, "password" character varying(300) NOT NULL, "description" character varying(300) NOT NULL, CONSTRAINT "PK_cace4a159ff9f2512dd42373760" PRIMARY KEY ("id"))`);
-        await queryRunner.createTable(new Table({
-            name: "user",
-            columns: [...baseColumns,
-            {
-                name: "username",
-                type: "varchar",
-                length: "50",
-                isNullable: false,
-                isUnique: true,
-            },{
-                name: "password",
-                type: "varchar",
-                length: "20",
-                isNullable: true
-            },{
-                name: "email",
-                type: "varchar",
-                length: "100",
-                isNullable: true
-            }]
-        }),true);
-
         await queryRunner.createTable(new Table({
             name: "provider",
             columns: [...baseColumns,
@@ -122,12 +99,77 @@ export class Breshow1630964907667 implements MigrationInterface {
                 isNullable: false
             }]
         }),true);
+
+        await queryRunner.createTable(new Table({
+            name: "product",
+            columns: [...baseColumns,
+            {
+                name: "name",
+                type: "varchar",
+                length: "50",
+                isNullable: false,
+                isUnique: false,
+            },{
+                name: "idUser",
+                type: "varchar",
+                length: "30",
+                isNullable: false
+            },{
+                name: "category_id",
+                type: "uuid",
+                isNullable: false
+            },{
+                name: "provider_id",
+                type: "uuid",
+                isNullable: false
+            },
+            {
+                name: "comment",
+                type: "varchar",
+                isNullable: true,
+            },{
+                name: "price",
+                type: "integer",
+                isNullable: false
+            },{
+                name: "quantity",
+                type: "integer",
+                isNullable: false
+            },{
+                name: "date_in",
+                type: 'timestamp',
+                default: 'now()',
+                isNullable: false
+            }]
+        }),true);
+
+        const categoryFK = new TableForeignKey({
+            name: 'category_product_fk',
+            columnNames: ["category_id"],
+            referencedColumnNames: ["id"],
+            referencedTableName: "category",
+            onDelete: "CASCADE"
+        });
+        await queryRunner.createForeignKey("product", categoryFK);
+
+        const providerFK = new TableForeignKey({
+            name: 'provider_product_fk',
+            columnNames: ["provider_id"],
+            referencedColumnNames: ["id"],
+            referencedTableName: "provider",
+            onDelete: "CASCADE"
+        });
+        await queryRunner.createForeignKey("product", providerFK);
+        
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.query(`DROP TABLE "user"`);
+        
+        await queryRunner.query(`ALTER TABLE "product" DROP CONSTRAINT "category_product_fk";`);
+        await queryRunner.query(`ALTER TABLE "product" DROP CONSTRAINT "provider_product_fk";`);
         await queryRunner.query(`DROP TABLE "provider"`);
         await queryRunner.query(`DROP TABLE "category"`);
+        await queryRunner.query(`DROP TABLE "product"`);
 
     }
 
