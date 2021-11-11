@@ -16,7 +16,6 @@ import { NavbarComponent } from './component/navbar/navbar.component';
 import { FooterComponent } from './component/footer/footer.component';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { initializeKeycloak } from './init/keycloak-init.factory';
-import { TesteModule } from './core/teste/teste.module';
 import { HomeModule } from './core/home/home.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProviderModule } from './core/provider/provider.module';
@@ -26,6 +25,7 @@ import {ButtonModule} from 'primeng/button';
 import { BaseService } from './service/base.service';
 import { CategoryModule } from './core/category/category.module';
 import { CategoryService } from './service/category.service';
+import { ProductModule } from './core/product/product.module';
 
 @NgModule({
   declarations: [
@@ -39,7 +39,6 @@ import { CategoryService } from './service/category.service';
     AppRoutingModule,
     HttpClientModule,
     KeycloakAngularModule,
-    TesteModule,
     HomeModule,
     ProviderModule,
     CategoryModule,
@@ -50,7 +49,8 @@ import { CategoryService } from './service/category.service';
     MatMenuModule,
     MenubarModule,
     MenuModule,
-    ButtonModule
+    ButtonModule,
+    ProductModule
   ],
   providers: [
     {

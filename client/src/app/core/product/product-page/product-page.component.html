@@ -1,0 +1,58 @@
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+<p-card styleClass="p-shadow-panel">
+    <p-toolbar styleClass="p-mb-4">
+        <ng-template pTemplate="left">
+            <!-- <button pButton pRipple label="Adicionar" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
+            <button pButton pRipple icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedEntities()" [disabled]="!selectedEntities || !selectedEntities.length"></button> -->
+        </ng-template>
+
+        <ng-template pTemplate="right">
+            <!-- <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="p-mr-2 p-d-inline-block"></p-fileUpload> -->
+            <!-- <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help"></button> -->
+            <button pButton pRipple label="Adicionar" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
+            <button pButton pRipple icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedEntities()" [disabled]="!selectedEntities || !selectedEntities.length"></button>
+        </ng-template>
+    </p-toolbar>
+
+    <p-table #dt [value]="entities" [rows]="10" [paginator]="true" [globalFilterFields]="['name','country.name','representative.name','status']" responsiveLayout="scroll"
+        [(selection)]="selectedEntities" [rowHover]="true" dataKey="id"
+        currentPageReportTemplate="Mostrando de {first} a {last} produtos" [showCurrentPageReport]="true">
+        <ng-template pTemplate="caption">
+            <div class="p-d-flex p-ai-center p-jc-between">
+                <h5 class="p-m-0">Tabela de produtos</h5>
+                <!-- <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search..." /> 
+                </span> -->
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 3rem">
+                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th>
+                <th pSortableColumn="name">Nome <p-sortIcon field="name"></p-sortIcon></th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-entity>
+            <tr>
+                <td>
+                    <p-tableCheckbox [value]="entity"></p-tableCheckbox>
+                </td>
+                <td>{{entity.name}}</td>
+
+                <td style="text-align: right;">
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editEntity(entity)"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteEntity(entity)"></button>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+            <div class="p-d-flex p-ai-center p-jc-between">
+                Total de {{entities ? entities.length : 0 }} produtos.
+            </div>
+        </ng-template>
+    </p-table>
+</p-card>
+<app-product-form [propComponent]="formComponent" [entity]="entity" (updateTable)="updateTable()"></app-product-form>

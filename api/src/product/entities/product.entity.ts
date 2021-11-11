@@ -1,6 +1,7 @@
 import { BaseEntity } from '../../base/base.entity';
 import { Entity, Column, OneToOne, JoinColumn, JoinColumnOptions} from 'typeorm';
 import { Provider } from 'src/provider/entities/provider.entity';
+import { Category } from 'src/category/entities/category.entity';
 
 @Entity({ name: 'product' })
 export class Product extends BaseEntity{
@@ -10,9 +11,9 @@ export class Product extends BaseEntity{
     @Column({ type: 'varchar', length: 50 })
     name: string;
 
-    @OneToOne(() => Provider)
+    @OneToOne(() => Category)
     @JoinColumn(<JoinColumnOptions>{name: 'categoryId'})
-    category: Provider;
+    category: Category;
 
     @OneToOne(() => Provider)
     @JoinColumn(<JoinColumnOptions>{name: 'providerId'})
