@@ -17,6 +17,47 @@
                     <small *ngIf="validatorRequired('name')" id="username2-help" class="p-error">Campo Obrigatório.</small>
                 </span>
             </div>
+            <div class="p-mb-2">
+                <p-dropdown
+                *ngIf="category$ | async as category"
+                [options]="category"
+                placeholder="Selecione uma categoria"
+                optionLabel="name"
+                [showClear]="true"
+                formControlName="category"
+                [(ngModel)]="entity.category"
+                ></p-dropdown>
+            </div>
+            <div class="p-mb-2">
+                <p-dropdown
+                *ngIf="provider$ | async as provider"
+                [options]="provider"
+                placeholder="Selecione um(a) fornecedor(a)"
+                optionLabel="name"
+                [showClear]="true"
+                formControlName="provider"
+                [(ngModel)]="entity.provider"
+                ></p-dropdown>
+            </div>
+            <div class="p-mb-2">
+                <label for="priceLabel">Valor do Produto: </label>
+                <p-inputNumber formControlName='price' [(ngModel)]="entity.price" mode="currency" currency="BRL" locale="pt-BR">
+                </p-inputNumber>
+            </div>
+            <div class="p-mb-2">
+                <label for="integeronly">Quantidade do Produto: </label>
+                <p-inputNumber inputId="integeronly" formControlName='quantity' [(ngModel)]="entity.quantity">
+                </p-inputNumber>
+            </div>
+            <div class="p-mb-2">
+                <label for="dateIn">Data de Entrada do Produto: </label>
+                <p-calendar formControlName='dateIn' inputId="dateIn" dateFormat="dd/mm/yy" [(ngModel)]="entity.dateIn"></p-calendar>
+            </div>
+            <div>
+                <label for="comment">Informações: </label>
+                <textarea pInputTextarea formControlName='comment' id="comment"
+                          [(ngModel)]="entity.comment"></textarea>
+            </div>
         </div>
     </ng-template>
     <ng-template pTemplate="footer">

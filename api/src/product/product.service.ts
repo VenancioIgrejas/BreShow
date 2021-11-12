@@ -23,18 +23,20 @@ export class ProductService {
       price: createProductDto.price,
       quantity: createProductDto.quantity,
       comment: createProductDto.comment,
-      dateIn: createProductDto.dateIn
+      dateIn: createProductDto.dateIn,
+      provider: <Provider>{id: createProductDto.providerId},
+      category: <Category>{id: createProductDto.categoryId}
     });
-
-    product.provider.id = createProductDto.providerId;
-    product.category.id = createProductDto.categoryId;
 
     return await this.productRepository.save(product);
     // return 'This action adds a new product';
   }
 
   findAll(idUser: string) {
-    return this.productRepository.find({ where: { idUser: idUser} });
+    return this.productRepository.find({
+       relations: ['category','provider'],
+       where: { idUser: idUser} 
+      });
   }
 
   findOne(id: string) {

@@ -26,6 +26,7 @@ import { BaseService } from './service/base.service';
 import { CategoryModule } from './core/category/category.module';
 import { CategoryService } from './service/category.service';
 import { ProductModule } from './core/product/product.module';
+import { ProductService } from './service/product.service';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { ProductModule } from './core/product/product.module';
     },
     BaseService,
     ProviderService,
-    CategoryService
+    CategoryService,
+    ProductService
   ],
   bootstrap: [AppComponent]
 })

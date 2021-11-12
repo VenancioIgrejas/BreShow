@@ -1,9 +1,14 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Product } from 'src/app/module/interface/product.interface';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
-import { tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { Message, MessageService } from 'primeng/api';
 import { ProductService } from 'src/app/service/product.service';
+import { ProviderService } from 'src/app/service/provider.service';
+import { CategoryService } from 'src/app/service/category.service';
+import { Category } from 'src/app/module/interface/category.interface';
+import { Observable } from 'rxjs';
+import { Provider } from 'src/app/module/interface/provider.interface';
 
 @Component({
   selector: 'app-product-form',
@@ -26,18 +31,42 @@ export class ProductFormComponent implements OnInit {
   public updateTable: EventEmitter<any> = new EventEmitter();
 
   private mapNameControl = new Map<String,String>();
+  public category$!: Observable<Category[]>;
+  public provider$!: Observable<Provider[]>;
   public isRequiredServer = false as boolean;
 
   //forms
   public form = new FormGroup({
-    name: new FormControl('', [Validators.required])
+    name: new FormControl('', [Validators.required]),
+    category: new FormControl('', [Validators.required]),
+    comment: new FormControl('', [Validators.required]),
+    provider: new FormControl('', [Validators.required]),
+    price: new FormControl('', [Validators.required]),
+    quantity: new FormControl('', [Validators.required]),
+    dateIn: new FormControl('', [Validators.required])
   });
 
-  constructor( private productService: ProductService,private messageService: MessageService) { }
+  constructor( private productService: ProductService,
+               private messageService: MessageService,
+               private providerService: ProviderService,
+               private categoryService: CategoryService) { }
 
   ngOnInit(): void {
     this.mapNameControl
-          .set('name','Nome');
+          .set('name','Nome')
+          .set('category', 'Categoria')
+          .set('comment', 'Comentário')
+          .set('provider', 'Fornecedor')
+          .set('price', 'Valor')
+          .set('quantity', 'Quantidade')
+          .set('dateIn', 'Data da Venda');
+
+    this.category$ = this.categoryService.getAllCategory().pipe(
+      map(category => category)
+   );
+   this.provider$ = this.providerService.getAllProvider().pipe(
+    map(provider => provider)
+ );
   }
 
   validatorRequired(nameForm: string) {
@@ -98,12 +127,10 @@ export class ProductFormComponent implements OnInit {
       this.propComponent.visible = false;
       this.updateTable.emit();
     },errors => {
-      console.log(errors);
       this.messageService.add(<Message>{
         severity:'error',
          summary:`Problema ao Salvar`, detail:errors.error.message
       })
-    },()=>{
       this.isRequiredServer = false;
     })
   }
@@ -118,13 +145,12 @@ export class ProductFormComponent implements OnInit {
       this.propComponent.visible = false;
       this.updateTable.emit();
     },errors => {
-      console.log(errors);
       this.messageService.add(<Message>{
         severity:'error',
          summary:`Problema ao Salvar`, detail:errors.error.message
       })
-    },()=>{
       this.isRequiredServer = false;
+
     })
   }
 }

@@ -5,7 +5,7 @@ export interface Product {
     id?:string
     name?:string;
     provider?: Provider;
-    catefory?: Category;
+    category?: Category;
     price?: number;
     quantity?: number;
     comment?: string;

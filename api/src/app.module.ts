@@ -16,7 +16,6 @@ import { APP_GUARD } from '@nestjs/core';
 import { ProviderModule } from './provider/provider.module';
 import { CategoryModule } from './category/category.module';
 import { ProductModule } from './product/product.module';
-import { ProviderService } from './service/provider/provider.service';
 
 @Module({
   imports: [TypeOrmModule.forRoot(),
@@ -56,7 +55,6 @@ import { ProviderService } from './service/provider/provider.service';
     {
       provide: APP_GUARD,
       useClass: RoleGuard,
-    },
-    ProviderService,],
+    }],
 })
 export class AppModule { }

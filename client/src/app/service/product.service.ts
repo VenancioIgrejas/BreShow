@@ -25,7 +25,12 @@ export class ProductService extends BaseService{
   }
 
   add(entity: Product): Observable<Product> | null {
-    return this.post<Product>(this.httpService, entity);
+    console.log(entity);
+    const entityMod = {...entity,
+                      categoryId: entity.category?.id,
+                      providerId: entity.provider?.id}
+
+    return this.post<any>(this.httpService, entityMod);
   }
 
   delete(id: string){

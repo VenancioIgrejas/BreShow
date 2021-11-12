@@ -40,7 +40,7 @@ export class ProductPageComponent implements OnInit, OnDestroy {
     this.submitted = false;
     this.formComponent = {
       visible: true,
-      title: 'Adicionar Fornecedor',
+      title: 'Adicionar Produto',
       new: true
     };
     this.entityDialog = true;
@@ -63,7 +63,7 @@ export class ProductPageComponent implements OnInit, OnDestroy {
     this.entity = { ...entityModel };
     this.formComponent = {
       visible: true,
-      title: 'Editar Fornecedor',
+      title: 'Editar Produto',
       new: false
     };
     this.entityDialog = true;
@@ -72,12 +72,12 @@ export class ProductPageComponent implements OnInit, OnDestroy {
   deleteEntity(entityModel: Product) {
     console.log(entityModel)
     this.confirmationService.confirm({
-        message: 'Gostaria de excluir o fornecedor ' + entityModel.name + '?',
+        message: 'Gostaria de excluir o produto ' + entityModel.name + '?',
         header: 'Deletar',
         icon: 'pi pi-exclamation-triangle',
         accept: () => {
             let subdelete = this.productService.delete(entityModel.id || "").subscribe(() =>{
-              this.messageService.add({severity:'success', detail: 'Fornecedor deletado com sucesso!', life: 3000});
+              this.messageService.add({severity:'success', detail: 'Produto deletado com sucesso!', life: 3000});
               this.updateTable();
             },errors =>{
               console.log(errors);

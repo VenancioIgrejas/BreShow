@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Provider } from 'src/app/module/interface/provider.interface';
 import { ProviderService } from 'src/app/service/provider.service';
-import { ConfirmationService } from 'primeng/api';
+import { ConfirmationService, Message } from 'primeng/api';
 import { MessageService } from 'primeng/api';
 
 @Component({
@@ -92,7 +92,10 @@ export class ProviderPageComponent implements OnInit, OnDestroy {
     });
   }
 
-  updateTable() {
+  updateTable(message?: Message) {
+
+    if(message) this.messageService.add(message);
+    
     let subscriptionInitProvider = this.providerService.getAllProvider().subscribe((data) => {
       console.log(data);
       this.entities = data;
