@@ -119,7 +119,8 @@ export class ProductFormComponent implements OnInit {
 
   edit() {
     this.productService.edit(this.entity)?.subscribe(res => {
-
+      
+      this.isRequiredServer = false;
       this.messageService.add(<Message>{
         severity:'sucess',
          summary:`Entidade Salva com sucesso`
@@ -127,17 +128,18 @@ export class ProductFormComponent implements OnInit {
       this.propComponent.visible = false;
       this.updateTable.emit();
     },errors => {
+      this.isRequiredServer = false;
       this.messageService.add(<Message>{
         severity:'error',
          summary:`Problema ao Salvar`, detail:errors.error.message
       })
-      this.isRequiredServer = false;
     })
   }
 
   add(){
     this.productService.add(this.entity)?.subscribe(res => {
-
+      
+      this.isRequiredServer = false;
       this.messageService.add(<Message>{
         severity:'sucess',
          summary:`Entidade Salva com sucesso`
@@ -145,11 +147,11 @@ export class ProductFormComponent implements OnInit {
       this.propComponent.visible = false;
       this.updateTable.emit();
     },errors => {
+      this.isRequiredServer = false;
       this.messageService.add(<Message>{
         severity:'error',
          summary:`Problema ao Salvar`, detail:errors.error.message
       })
-      this.isRequiredServer = false;
 
     })
   }

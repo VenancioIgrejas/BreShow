@@ -7,7 +7,13 @@ export interface Product {
     provider?: Provider;
     category?: Category;
     price?: number;
+    priceTotal?: number;
+    priceFinal?: number;
     quantity?: number;
     comment?: string;
     dateIn?: Date;
+    priceGrid?: string;
+    priceTotalGrid?: string;
+    priceFinalGrid?: string;
+    dateInGrid?: string;
 }

@@ -1,5 +1,5 @@
 import { BaseEntity } from '../../base/base.entity';
-import { Entity, Column, OneToOne, JoinColumn, JoinColumnOptions} from 'typeorm';
+import { Entity, Column, OneToOne, JoinColumn, JoinColumnOptions, OneToMany, ManyToOne} from 'typeorm';
 import { Provider } from 'src/provider/entities/provider.entity';
 import { Category } from 'src/category/entities/category.entity';
 
@@ -11,16 +11,22 @@ export class Product extends BaseEntity{
     @Column({ type: 'varchar', length: 50 })
     name: string;
 
-    @OneToOne(() => Category)
+    @ManyToOne(() => Category)
     @JoinColumn(<JoinColumnOptions>{name: 'categoryId'})
     category: Category;
 
-    @OneToOne(() => Provider)
+    @ManyToOne(() => Provider)
     @JoinColumn(<JoinColumnOptions>{name: 'providerId'})
     provider: Provider;
     
-    @Column({ type: 'int'})
+    @Column({ type: "decimal"})
     price: number;
+    
+    @Column({ type: "decimal"})
+    priceFinal: number;
+
+    @Column({ type: "decimal"})
+    priceTotal: number;
 
     @Column({ type: 'int' })
     quantity: number;

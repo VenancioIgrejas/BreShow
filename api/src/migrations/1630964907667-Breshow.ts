@@ -129,7 +129,15 @@ export class Breshow1630964907667 implements MigrationInterface {
                 isNullable: true,
             },{
                 name: "price",
-                type: "integer",
+                type: "decimal",
+                isNullable: false
+            },{
+                name: "priceTotal",
+                type: "decimal",
+                isNullable: false
+            },{
+                name: "priceFinal",
+                type: "decimal",
                 isNullable: false
             },{
                 name: "quantity",
@@ -145,7 +153,7 @@ export class Breshow1630964907667 implements MigrationInterface {
 
         const categoryFK = new TableForeignKey({
             name: 'category_product_fk',
-            columnNames: ["category_id"],
+            columnNames: ["categoryId"],
             referencedColumnNames: ["id"],
             referencedTableName: "category",
             onDelete: "CASCADE"
@@ -154,7 +162,7 @@ export class Breshow1630964907667 implements MigrationInterface {
 
         const providerFK = new TableForeignKey({
             name: 'provider_product_fk',
-            columnNames: ["provider_id"],
+            columnNames: ["providerId"],
             referencedColumnNames: ["id"],
             referencedTableName: "provider",
             onDelete: "CASCADE"

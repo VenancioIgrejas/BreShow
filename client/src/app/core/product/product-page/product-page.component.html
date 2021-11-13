@@ -32,6 +32,13 @@
                     <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                 </th>
                 <th pSortableColumn="name">Nome <p-sortIcon field="name"></p-sortIcon></th>
+                <th pSortableColumn="categoryName">Categoria<p-sortIcon field="categoryName"></p-sortIcon></th>
+                <th pSortableColumn="priceFinal">Valor Final<p-sortIcon field="priceFinal"></p-sortIcon></th>
+                <th pSortableColumn="priceTotal">Total<p-sortIcon field="priceTotal"></p-sortIcon></th>
+                <th pSortableColumn="quantity">Quantidade<p-sortIcon field="quantity"></p-sortIcon></th>
+                <th pSortableColumn="price">Unitario<p-sortIcon field="price"></p-sortIcon></th>
+                <th pSortableColumn="providerName">Fornecedor<p-sortIcon field="providerName"></p-sortIcon></th>
+                <th pSortableColumn="dataIn">Data da venda<p-sortIcon field="dataIn"></p-sortIcon></th>
                 <th></th>
             </tr>
         </ng-template>
@@ -41,6 +48,13 @@
                     <p-tableCheckbox [value]="entity"></p-tableCheckbox>
                 </td>
                 <td>{{entity.name}}</td>
+                <td>{{entity.category.name}}</td>
+                <td>{{entity.priceFinalGrid}}</td>
+                <td>{{entity.priceTotalGrid}}</td>
+                <td>{{entity.quantity}}</td>
+                <td>{{entity.priceGrid}}</td>
+                <td>{{entity.provider.name}}</td>
+                <td>{{entity.dateInGrid}}</td>
 
                 <td style="text-align: right;">
                     <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editEntity(entity)"></button>

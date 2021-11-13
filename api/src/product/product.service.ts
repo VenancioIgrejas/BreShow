@@ -13,14 +13,22 @@ export class ProductService {
   constructor(
     @InjectRepository(Product) 
     private readonly productRepository: Repository<Product>,
+
+    @InjectRepository(Provider)
+    private readonly providerRepository: Repository<Provider>,
   ){}
 
   async create(createProductDto: CreateProductDto) {
+
+    const provider = await this.providerRepository.findOne(createProductDto.providerId);
+    const priceFinal = (1 - provider.perPrice/100.0) * createProductDto.quantity * createProductDto.price;
 
     const product = new Product(<Product>{
       idUser: createProductDto.idUser,
       name: createProductDto.name,
       price: createProductDto.price,
+      priceTotal: createProductDto.price * createProductDto.quantity,
+      priceFinal: priceFinal,
       quantity: createProductDto.quantity,
       comment: createProductDto.comment,
       dateIn: createProductDto.dateIn,
@@ -43,11 +51,18 @@ export class ProductService {
     return this.productRepository.getId(<Product>{id: id});
   }
 
-  update(id: string, updateProductDto: UpdateProductDto) {
-    return this.productRepository.update(id,<Product>{
+  async update(id: string, updateProductDto: UpdateProductDto) {
+
+    const provider = await this.providerRepository.findOne(updateProductDto.providerId);
+    const priceFinal = (1 - provider.perPrice/100.0) * updateProductDto.quantity * updateProductDto.price;
+
+    return this.productRepository.save(<Product>{
+      id: id,
       name: updateProductDto.name,
       price: updateProductDto.price,
       quantity: updateProductDto.quantity,
+      priceTotal: updateProductDto.price * updateProductDto.quantity,
+      priceFinal: priceFinal,
       comment: updateProductDto.comment,
       dateIn: updateProductDto.dateIn,
       provider: <Provider>{
