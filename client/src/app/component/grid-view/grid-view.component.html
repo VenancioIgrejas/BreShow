@@ -1,0 +1,44 @@
+<!-- <p-toolbar styleClass="p-mb-4">
+    <ng-template pTemplate="left"></ng-template>
+    <ng-template pTemplate="right">
+        <button pButton pRipple label="Adicionar" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
+        <button pButton pRipple icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedEntities()" [disabled]="!selectedEntities || !selectedEntities.length"></button>
+    </ng-template>
+</p-toolbar> -->
+
+<p-table #dt [columns]="grid.GridColumn" [value]="grid.GridData" [rows]="10" [paginator]="true" [globalFilterFields]="['name','country.name','representative.name','status']" responsiveLayout="scroll"
+    [rowHover]="true" dataKey="id"
+    currentPageReportTemplate="Mostrando de {first} a {last} {{grid.GridInfo.entityName}}" [showCurrentPageReport]="true">
+    <ng-template pTemplate="caption">
+        <div class="p-d-flex p-ai-center p-jc-between">
+            <h5 class="p-m-0">{{grid.GridInfo.title}}</h5>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th pSortableColumn="{{col.header}}" *ngFor="let col of columns">
+                {{col.header}}
+                <p-sortIcon field="{{col.header}}"></p-sortIcon>
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr>
+            <td *ngFor="let col of columns">
+                <span *ngIf="!col.subField">
+                    {{rowData[col.field]}}
+                </span>
+
+                <span *ngIf="col.subField">
+                    {{rowData[col.field][col.subField]}}
+                </span>
+
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+        <div class="p-d-flex p-ai-center p-jc-between">
+            Total de {{grid.GridData ? grid.GridData.length : 0 }} {{grid.GridInfo.entityName}}.
+        </div>
+    </ng-template>
+</p-table>

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { KeycloakService } from 'keycloak-angular';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Product } from '../module/interface/product.interface';
 import { BaseService } from './base.service';
 
@@ -17,7 +18,7 @@ export class ProductService extends BaseService{
   }
 
   getAllProduct() {
-    return this.get<Product[]>(this.httpService + '/all');
+    return this.get<Product[]>(this.httpService + '/all').pipe(map(this.mapEntity));
   }
 
   edit(entity: Product) {
@@ -35,5 +36,22 @@ export class ProductService extends BaseService{
 
   delete(id: string){
     return super.delete(this.httpService,id);
+  }
+
+  mapEntity(data: Product[]){
+    return data.map(prod => <Product>{...prod,
+      priceGrid: (Number.parseFloat(prod.price as any) || 0).toLocaleString('pt-br',{style: 'currency', currency: 'BRL',minimumFractionDigits: 2}),
+      priceTotalGrid: (Number.parseFloat(prod.priceTotal as any) || 0).toLocaleString('pt-br',{style: 'currency', currency: 'BRL',minimumFractionDigits: 2}),
+      priceFinalGrid: (Number.parseFloat(prod.priceFinal as any) || 0).toLocaleString('pt-br',{style: 'currency', currency: 'BRL',minimumFractionDigits: 2}),
+      dateIn: new Date(prod.dateIn || ""),
+      dateInGrid: new Date(prod.dateIn || "").toLocaleDateString()
+    });
+  }
+
+  public maskPriceToReal(price: number | string): string{
+    if(typeof price == "string"){
+      price = Number.parseFloat(price as any);
+    }
+    return price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL',minimumFractionDigits: 2});
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { KeycloakService } from 'keycloak-angular';
 import { MenuItem } from 'primeng/api';
 import { Router } from 'src/app/module/interface/router.interface';
 import { routes } from 'src/app/routers.component';
@@ -14,7 +15,7 @@ export class NavbarComponent implements OnInit {
   public routers = [] as Router[];
   public items = [] as MenuItem[];
   public itemsPopup = [] as MenuItem[];
-  constructor() { }
+  constructor(private keycloakService: KeycloakService) { }
 
   ngOnInit(): void {
 
@@ -31,6 +32,20 @@ export class NavbarComponent implements OnInit {
 
     tmp.forEach(x => this.items.push(x));
 
-  }
+      this.keycloakService.loadUserProfile().then(x => {
+        this.itemsPopup = [{
+          label: `${x.firstName}`,
+          items: [{
+              label: 'Logout',
+              icon: 'pi pi-user-minus',
+              command: () => {
+                  this.keycloakService.logout();
+              }
+          }]
+        }]
 
+      })
+
+    
+    };
 }

@@ -4,6 +4,7 @@ import { Provider } from '../module/interface/provider.interface';
 import { KeycloakService } from 'keycloak-angular';
 import { BaseService } from './base.service';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 
 @Injectable({
@@ -18,7 +19,7 @@ export class ProviderService extends BaseService {
   }
 
   getAllProvider() {
-    return this.get<Provider[]>(this.httpService + '/all');
+    return this.get<Provider[]>(this.httpService + '/all').pipe(map(this.mapEntity));
   }
 
   edit(entity: Provider) {
@@ -31,6 +32,13 @@ export class ProviderService extends BaseService {
 
   delete(id: string){
     return super.delete(this.httpService,id);
+  }
+
+  private mapEntity(data: Provider[]){
+    return data.map(data => <Provider>{
+      ...data, 
+      perPriceGrid: ((data.perPrice || 0) /100).toLocaleString('pt-br',{ style: 'percent' })
+    })
   }
   
 }

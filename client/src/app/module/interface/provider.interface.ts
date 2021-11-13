@@ -4,4 +4,5 @@ export interface Provider {
     cel?: string
     info?: string
     perPrice?: number
+    perPriceGrid?: string
 }

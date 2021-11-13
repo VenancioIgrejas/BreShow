@@ -94,24 +94,9 @@ export class ProductPageComponent implements OnInit, OnDestroy {
   updateTable() {
     let subscriptionInitProduct = this.productService.getAllProduct().subscribe((data) => {
       console.log(data);
-      this.entities = data.map(prod => <Product>{...prod,
-        priceGrid: this.maskPriceToReal(prod.price  || 0),
-        priceTotalGrid: this.maskPriceToReal(prod.priceTotal || 0),
-        priceFinalGrid: this.maskPriceToReal(prod.priceFinal  || 0),
-        dateIn: new Date(prod.dateIn || ""),
-        dateInGrid: new Date(prod.dateIn || "").toLocaleDateString()
-      });
+      this.entities = data;
     },error => console.log(error));
 
     this.subscribes.add(subscriptionInitProduct);
   }
-
-  maskPriceToReal(price: number | string): string{
-    if(typeof price == "string"){
-      price = Number.parseFloat(price as any);
-    }
-    
-    return price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL',minimumFractionDigits: 2});
-  }
-
 }

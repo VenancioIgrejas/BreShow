@@ -1,1 +1,20 @@
-<p>home-page works!</p>
+<div class="p-grid">
+    <div class="p-col-12">
+        <p-card styleClass="p-shadow-panel">
+            <app-grid-view [grid]="gridProduct"></app-grid-view>
+        </p-card>
+    </div>
+</div>
+
+<div class="p-grid">
+    <div class="p-col-5">
+        <p-card styleClass="p-shadow-panel">
+            <app-grid-view [grid]="gridCategory"></app-grid-view>
+        </p-card>
+    </div>
+    <div class="p-col-7">
+        <p-card styleClass="p-shadow-panel">
+            <app-grid-view [grid]="gridProvider"></app-grid-view>
+        </p-card>
+    </div>
+</div>

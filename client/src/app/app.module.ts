@@ -33,7 +33,7 @@ import { ProductService } from './service/product.service';
     AppComponent,
     SidebarComponent,
     NavbarComponent,
-    FooterComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
