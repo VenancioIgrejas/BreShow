@@ -38,19 +38,20 @@ services:
   #   depends_on:
   #     - keycloak
   
-  # grafana:
-  #   image: grafana/grafana:7.3.6
-  #   ports:
-  #     - 8084:3000
-  #   networks:
-  #     - postgres
+  grafana:
+    image: grafana/grafana:7.3.6
+    ports:
+      - 8084:3000
+    volumes:
+      - ./grafana:/var/lib/grafana
+    networks:
+      - postgres
 
   postgres:
     container_name: postgres_containerbreshow
     image: postgres-dev:1.0.0
     build:
       context: .
-      target: development
       dockerfile: ./data/Dockerfile
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
