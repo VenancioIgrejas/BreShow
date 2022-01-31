@@ -1,2 +1,4 @@
 .vscode
 /data/postgres-data
+/dataBkp
+/node_modules

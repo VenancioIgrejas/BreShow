@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "installapp": "concurrently \"cd api && npm install && npm run typeorm:migration:run  && npm run build\" \"cd client && npm install && npm run build\"",
+    "dev": "concurrently \"cd api && npm run start\" \"cd client && npm run start\""
+  },
+  "dependencies": {
+    "concurrently": "^7.0.0"
+  }
+}
