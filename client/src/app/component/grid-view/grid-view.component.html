@@ -6,7 +6,7 @@
     </ng-template>
 </p-toolbar> -->
 
-<p-table #dt [columns]="grid.GridColumn" [value]="grid.GridData" [rows]="10" [paginator]="true" [globalFilterFields]="['name','country.name','representative.name','status']" responsiveLayout="scroll"
+<p-table #dt [columns]="grid.GridColumn" [value]="grid.GridData" [rows]="5" [paginator]="true" [globalFilterFields]="['name','country.name','representative.name','status']" responsiveLayout="scroll"
     [rowHover]="true" dataKey="id"
     currentPageReportTemplate="Mostrando de {first} a {last} {{grid.GridInfo.entityName}}" [showCurrentPageReport]="true">
     <ng-template pTemplate="caption">

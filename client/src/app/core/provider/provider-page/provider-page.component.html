@@ -14,7 +14,7 @@
         </ng-template>
     </p-toolbar>
 
-    <p-table #dt [value]="entities" [rows]="10" [paginator]="true" [globalFilterFields]="['name','country.name','representative.name','status']" responsiveLayout="scroll"
+    <p-table #dt [value]="entities" [rows]="5" [paginator]="true" [globalFilterFields]="['name','country.name','representative.name','status']" responsiveLayout="scroll"
         [(selection)]="selectedEntities" [rowHover]="true" dataKey="id"
         currentPageReportTemplate="Mostrando de {first} a {last} fornecedores" [showCurrentPageReport]="true">
         <ng-template pTemplate="caption">
