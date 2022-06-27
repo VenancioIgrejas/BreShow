@@ -6,6 +6,7 @@
   Para mais informações sobre o projeto, baixe o pdf do TCC clicando no [link](https://github.com/VenancioIgrejas/BreShow/blob/master/ProjetoFinalUfrjBreShow.pdf).
 
 ## Instalação
+Para a instalação, siga todos os passos na ordem para não ter nenhum problema e espere finalizar cada passo a passo para ir pro próximo.
 ### Pré-requisitos
   - Ter o Git instalado na máquina
   - Ter o [Docker](https://www.docker.com/) instalado na máquina
@@ -34,7 +35,7 @@ docker-compose up
 ```
 aguarde até todos os containers estiverem rodando e finalizados as instalações. Caso utiliza o Docker-Desktop, ele deve estar parecido com essa figura no final da instalação:
 
-imagem1
+![InicializacaoDoContainer](./Image/InicializacaoContainerDockerDesktop.png)
 
 ### Aplicação Web
 Primeiramente, devemos instalar os pacotes Node tanto do FrontEnd (Angular 12) quanto do BackEnd (NestJS). Caso seja a sua primeira vez, basta rodar script:
@@ -45,7 +46,43 @@ Primeiramente, devemos instalar os pacotes Node tanto do FrontEnd (Angular 12) q
 
 Esse script irá instalar automaticamente e em paralelamente os pacotes necessários para o funcionamento da ferramenta do angular 12 e do NestJS, além de gerar a migração dos dados da aplicação para o banco de dados, criando assim as estruturas de tabelas e relacionamentos. Quando tudo tiver completado, o seu terminal precisa estar com o seguinte formato:
 
-imagem2
+FrontEnd(Angular12):
+<br/><br/>
+![InicializacaoFrontEndWA](./Image/InicializacaoFrontEndWA.png)
+<br/><br/>
+BackEnd(Angular12):
+<br/><br/>
+![InicializacaoBackEndWA](./Image/InicializacaoBackEndWA.png)
+
+
+## Iniciando Projeto
+Para iniciar o projeto basta inicializar a composição de containers utilizando o comando na raiz do projeto no terminal:
+```
+docker-compose up
+```
+
+E em outro terminal, rodar o comando de inicialização dos dois serviços do módulo da Aplicação Web:
+```
+./startDevApp.sh
+```
+
+Após a inicialização completa dos dois, os terminais devem ficar parecidos com essas imagens:
+FrontEnd(Angular12):
+<br/><br/>
+![InicializacaoFrontEndWA](./Image/InicializacaoFrontEndWA.png)
+<br/><br/>
+BackEnd(Angular12):
+<br/><br/>
+![InicializacaoBackEndWA](./Image/InicializacaoBackEndWA.png)
+
+Para acessar os módulos, basta escrever as seguintes urls no navegar de acordo com a sua necessidade:
+
+  - Aplicação Web -> http://localhost:4200/
+  - Dashboard -> http://localhost:8084/login
+  - Gerenciador de Aplicativos -> http://localhost:28080/auth/
+
+__OBS:__ Senhas e configurações encontram-se nos arquivos _docker-compose.yml_ ou _.env_ 
+
 ## Desativando
 Para desativar/desligar o sistema, basta __fechar o terminal__ onde esteja rodando o serviço da Aplicação Web e, no caso da composição dos containers, basta rodar o seguinte trecho na raiz do projeto:
 
