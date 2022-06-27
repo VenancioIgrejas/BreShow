@@ -5,8 +5,14 @@
 
   Para mais informações sobre o projeto, baixe o pdf do TCC clicando no [link](https://github.com/VenancioIgrejas/BreShow/blob/master/ProjetoFinalUfrjBreShow.pdf).
 
+
+__OBS1: Senhas e configurações encontram-se nos arquivos docker-compose.yml ou .env__
+
+__OBS2: O projeto funciona apenas localmente, o motivo disso encontra-se no [documento do projeto](https://github.com/VenancioIgrejas/BreShow/blob/master/ProjetoFinalUfrjBreShow.pdf)__
+
 ## Instalação
 Para a instalação, siga todos os passos na ordem para não ter nenhum problema e espere finalizar cada passo a passo para ir pro próximo.
+
 ### Pré-requisitos
   - Ter o Git instalado na máquina
   - Ter o [Docker](https://www.docker.com/) instalado na máquina
