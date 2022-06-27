@@ -24,16 +24,16 @@ cd ./BreShow
 
 Após os seguintes comandos, verá que o seu terminal estará apontando para dentro da pasta do projeto. Iremos chamar isso de __raiz do projeto__ ou __raiz__ para facilitar o entendimento.
 
-### Composição dos containers 
+### Composição dos Contêineres 
 
 __OBS: O Docker precisa estar online na sua máquina e funcionando__
 
-Para rodar a composição dos containers, onde estão contidos o módulo de dashboard, módulo do gerenciador de usuários e o banco de dados, basta rodar o seguinte comando dentro da pasta raiz:
+Para rodar a composição dos contêineres, onde estão contidos o módulo de dashboard, módulo do gerenciador de usuários e o banco de dados, basta rodar o seguinte comando dentro da pasta raiz:
 
 ```
 docker-compose up
 ```
-aguarde até todos os containers estiverem rodando e finalizados as instalações. Caso utiliza o Docker-Desktop, ele deve estar parecido com essa figura no final da instalação:
+aguarde até todos os contêineres estiverem rodando e finalizados as instalações. Caso utiliza o Docker-Desktop, ele deve estar parecido com essa figura no final da instalação:
 
 ![InicializacaoDoContainer](./Image/InicializacaoContainerDockerDesktop.png)
 
@@ -56,7 +56,7 @@ BackEnd(Angular12):
 
 
 ## Iniciando Projeto
-Para iniciar o projeto basta inicializar a composição de containers utilizando o comando na raiz do projeto no terminal:
+Para iniciar o projeto basta inicializar a composição de contêineres utilizando o comando na raiz do projeto no terminal:
 ```
 docker-compose up
 ```
@@ -67,13 +67,12 @@ E em outro terminal, rodar o comando de inicialização dos dois serviços do m�
 ```
 
 Após a inicialização completa dos dois, os terminais devem ficar parecidos com essas imagens:
-FrontEnd(Angular12):
-<br/><br/>
+
 ![InicializacaoFrontEndWA](./Image/InicializacaoFrontEndWA.png)
-<br/><br/>
-BackEnd(Angular12):
-<br/><br/>
+
 ![InicializacaoBackEndWA](./Image/InicializacaoBackEndWA.png)
+
+![InicializacaoBackEndWA](./Image/InicializacaoDoContainer.png)
 
 Para acessar os módulos, basta escrever as seguintes urls no navegar de acordo com a sua necessidade:
 
@@ -84,7 +83,7 @@ Para acessar os módulos, basta escrever as seguintes urls no navegar de acordo 
 __OBS:__ Senhas e configurações encontram-se nos arquivos _docker-compose.yml_ ou _.env_ 
 
 ## Desativando
-Para desativar/desligar o sistema, basta __fechar o terminal__ onde esteja rodando o serviço da Aplicação Web e, no caso da composição dos containers, basta rodar o seguinte trecho na raiz do projeto:
+Para desativar/desligar o sistema, basta __fechar o terminal__ onde esteja rodando o serviço da Aplicação Web e, no caso da composição dos contêineres, basta rodar o seguinte trecho na raiz do projeto:
 
 ```
 docker-compose stop
@@ -97,4 +96,4 @@ Primeiro rode o seguinte código no terminal da raiz do projeto:
 docker-compose Down
 ```
 
-e após finalizar a remoção da composição dos containers, basta deletar a pasta do BreShow.
+e após finalizar a remoção da composição dos contêineres, basta deletar a pasta do BreShow.
